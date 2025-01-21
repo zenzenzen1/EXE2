@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
-import { indexScript, indexStyle, navElements } from '../../include/include';
-import Header from '../common/Header';
-import Footer from '../common/Footer';
-import IncludeStyleScript from '../common/IncludeStyleScript';
-import { images } from '../../include/images';
-import SmallAbout from '../common/SmallAbout';
-import OwlCarousel from '../common/OwlCarousel';
-import FtcoKind from '../common/FtcoKind';
 import { Link } from 'react-router-dom';
+import { images } from '../../include/images';
+import { navElements } from '../../include/include';
+import Footer from '../common/Footer';
+import FtcoKind from '../common/FtcoKind';
+import Header from '../common/Header';
+import IncludeStyleScript from '../common/IncludeStyleScript';
+import OwlCarousel from '../common/OwlCarousel';
+import SmallAbout from '../common/SmallAbout';
+import StatisticsSaleInfo from '../common/StatisticsSaleInfo';
+import { information } from '../../include/information';
 
-type Props = {}
 
-function About({ }: Props) {
+function About() {
     // useEffect(() => {
     //     let l: HTMLLinkElement[] = [];
     //     // Link for head
@@ -132,84 +132,12 @@ function About({ }: Props) {
             </section>
 
             <OwlCarousel />
-
-
-
-
-            <section
-                className="ftco-counter ftco-section ftco-no-pt ftco-no-pb img bg-light"
-                id="section-counter"
-            >
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-                            <div className="block-18 py-4 mb-4">
-                                <div className="text align-items-center">
-                                    <strong className="number" data-number={3000}>
-                                        0
-                                    </strong>
-                                    <span>Our Satisfied Customers</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-                            <div className="block-18 py-4 mb-4">
-                                <div className="text align-items-center">
-                                    <strong className="number" data-number={115}>
-                                        0
-                                    </strong>
-                                    <span>Years of Experience</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-                            <div className="block-18 py-4 mb-4">
-                                <div className="text align-items-center">
-                                    <strong className="number" data-number={100}>
-                                        0
-                                    </strong>
-                                    <span>Kinds of Liquor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-                            <div className="block-18 py-4 mb-4">
-                                <div className="text align-items-center">
-                                    <strong className="number" data-number={40}>
-                                        0
-                                    </strong>
-                                    <span>Our Branches</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
+            
+            <StatisticsSaleInfo branches={information.branches} customers={information.customers} target={information.target} yearsExperience={information.yearsExperience}/>
+            
             <Footer />
             {/* loader */}
-            <div id="ftco-loader" className="show fullscreen">
-                <svg className="circular" width="48px" height="48px">
-                    <circle
-                        className="path-bg"
-                        cx={24}
-                        cy={24}
-                        r={22}
-                        fill="none"
-                        strokeWidth={4}
-                        stroke="#eeeeee"
-                    />
-                    <circle
-                        className="path"
-                        cx={24}
-                        cy={24}
-                        r={22}
-                        fill="none"
-                        strokeWidth={4}
-                        strokeMiterlimit={10}
-                        stroke="#F96D00"
-                    />
-                </svg>
-            </div>
             <IncludeStyleScript />
         </>
 

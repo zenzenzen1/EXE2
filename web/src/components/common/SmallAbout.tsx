@@ -1,9 +1,8 @@
-import React from 'react'
 import { images } from '../../include/images'
+import { information } from '../../include/information'
 
-type Props = {}
 
-function SmallAbout({ }: Props) {
+function SmallAbout() {
     return (
         <section className="ftco-section ftco-no-pb">
             <div className="container">
@@ -15,7 +14,7 @@ function SmallAbout({ }: Props) {
                     ></div>
                     <div className="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
                         <div className="heading-section">
-                            <span className="subheading">Since 1905</span>
+                            <span className="subheading">Since 2025</span>
                             <h2 className="mb-4">Desire Meets A New Taste</h2>
                             <p>
                                 A small river named Duden flows by their place and supplies it
@@ -30,7 +29,7 @@ function SmallAbout({ }: Props) {
                                 to its own, safe country.
                             </p>
                             <p className="year">
-                                <strong className="number" data-number={115}>
+                                <strong className="number" data-number={information.yearsExperience}>
                                     0
                                 </strong>
                                 <span>Years of Experience In Business</span>

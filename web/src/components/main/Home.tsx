@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
-import Footer from '../common/Footer';
-import Header from '../common/Header';
-import { indexScript, indexStyle, links, navElements } from '../../include/include';
-import "./Home.css";
 import { Link } from 'react-router-dom';
 import { images } from '../../include/images';
-import IncludeStyleScript from '../common/IncludeStyleScript';
-import SmallAbout from '../common/SmallAbout';
-import OwlCarousel from '../common/OwlCarousel';
-import FtcoKind from '../common/FtcoKind';
+import { links, navElements } from '../../include/include';
 import { information } from '../../include/information';
-import ProductCard from '../common/ProductCard';
+import Footer from '../common/Footer';
+import FtcoIntro from '../common/FtcoIntro';
+import FtcoKind from '../common/FtcoKind';
+import Header from '../common/Header';
+import IncludeStyleScript from '../common/IncludeStyleScript';
+import OwlCarousel from '../common/OwlCarousel';
+import SmallAbout from '../common/SmallAbout';
 
 const Home = () => {
 
@@ -76,7 +74,7 @@ const Home = () => {
                                     <Link to={links.home}
                                         className="btn btn-primary py-2 px-4"
                                     >
-                                        Liquor <span>store</span>
+                                        My <span>store</span>
                                     </Link>
                                     <Link to={links.home}
                                         className="btn btn-white btn-outline-white py-2 px-4"
@@ -89,61 +87,14 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <section className="ftco-intro">
-                <div className="container">
-                    <div className="row no-gutters">
-                        <div className="col-md-4 d-flex">
-                            <div className="intro d-lg-flex w-100 ftco-animate">
-                                <div className="icon">
-                                    <span className="flaticon-support" />
-                                </div>
-                                <div className="text">
-                                    <h2>Online Support 24/7</h2>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <div className="intro color-1 d-lg-flex w-100 ftco-animate">
-                                <div className="icon">
-                                    <span className="flaticon-cashback" />
-                                </div>
-                                <div className="text">
-                                    <h2>Money Back Guarantee</h2>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <div className="intro color-2 d-lg-flex w-100 ftco-animate">
-                                <div className="icon">
-                                    <span className="flaticon-free-delivery" />
-                                </div>
-                                <div className="text">
-                                    <h2>Free Shipping &amp; Return</h2>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            
+            <FtcoIntro />
 
             <SmallAbout />
 
 
 
-            <section className="ftco-section ftco-no-pb">
+            <section className="ftco-section ftco-no-pb" style={{marginBottom: "6em"}}>
                 <div className="container">
                     <div className="row" style={{
                         justifyContent: "center"
@@ -152,7 +103,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className="ftco-section">
+            {/* <section className="ftco-section">
                 <div className="container">
                     <div className="row justify-content-center pb-5">
                         <div className="col-md-7 heading-section text-center ftco-animate">
@@ -285,7 +236,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
 
             <OwlCarousel />

@@ -1,9 +1,7 @@
-import React from 'react'
 import { images } from '../../include/images'
 
-type Props = {}
 
-function FtcoKind({ }: Props) {
+function FtcoKind() {
     return (
         <>
             {images.ftcoKinks.map((image, index) => (

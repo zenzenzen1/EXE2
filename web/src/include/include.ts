@@ -1,5 +1,5 @@
 export const indexScript = [
-    "/js/jquery.min.js"
+      "/js/jquery.min.js"
     , "/js/jquery-migrate-3.0.1.min.js"
     , "/js/popper.min.js"
     , "/js/bootstrap.min.js"
@@ -17,7 +17,7 @@ export const indexScript = [
 ];
 
 export const contactScript = [
-    ...indexScript,
+    ...indexScript
     , "https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"
     , "js/google-map.js"
 ]
@@ -54,14 +54,14 @@ export const socialMediaLinks = [
         icon: "fa fa-facebook"
     },
     {
+        name: "instagram",
+        url: "https://www.instagram.com/nemthanhnam/",
+        icon: "fa fa-instagram"
+    },
+    {
         name: "twitter",
         url: "XXXXXXXXXXXXXXXXXXXX",
         icon: "fa fa-twitter"
-    },
-    {
-        name: "instagram",
-        url: "XXXXXXXXXXXXXXXXXXXXXXXXXX",
-        icon: "fa fa-instagram"
     },
     {
         name: "dribbble",

@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { indexScript, indexStyle, links, navElements, socialMediaLinks } from '../../include/include'
+import { links, navElements, socialMediaLinks } from '../../include/include'
 import { information } from '../../include/information'
 import "./Header.css";
+import { images } from '../../include/images';
 
 type Props = {
     navChossen: string
@@ -71,10 +71,14 @@ const Header = (props: Props) => {
                     </div>
                 </div>
                 <div className="container">
+                    <Link to={links.home} >
+                        <img src={images.logo} alt="logo" width={"40px"} height={"40px"} style={{borderRadius: "100%"}}/>
+                    </Link>
                     <Link to={links.home} className="navbar-brand" >
                         Nem <span>Thành Nam</span>
                     </Link>
-                    <div className="order-lg-last btn-group">
+                    {/* Card Icon + function */}
+                    {/* <div className="order-lg-last btn-group">
                         <a
                             href="#"
                             className="btn-cart dropdown-toggle dropdown-toggle-split"
@@ -141,7 +145,7 @@ const Header = (props: Props) => {
                                 <span className="ion-ios-arrow-round-forward" />
                             </a>
                         </div>
-                    </div>
+                    </div> */}
                     <button
                         className="navbar-toggler"
                         type="button"

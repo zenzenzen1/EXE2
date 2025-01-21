@@ -1,51 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import Header from '../common/Header';
-import Footer from '../common/Footer';
-import { MultiSelect } from 'primereact/multiselect';
-import { productCategorySelection } from '../../datas/product';
-import { indexScript, indexStyle, navElements, productsScript, productsStyle } from '../../include/include';
-import { images } from '../../include/images';
-import IncludeStyleScript from '../common/IncludeStyleScript';
 import { Link } from 'react-router-dom';
-
-type Props = {}
-
-const Products = (props: Props) => {
-    const [productsSelected, setProductsSelected] = useState<any>([]);
-
-
-    // useEffect(() => {
-    //     let l: HTMLLinkElement[] = [];
-    //     // Link for head
-    //     productsStyle.forEach((linkHref) => {
-    //         const link = document.createElement('link');
-    //         link.rel = 'stylesheet';
-    //         link.href = linkHref;
-    //         document.head.appendChild(link);
-    //         l.push(link);
-
-    //     });
+import { images } from '../../include/images';
+import { navElements } from '../../include/include';
+import Footer from '../common/Footer';
+import Header from '../common/Header';
+import IncludeStyleScript from '../common/IncludeStyleScript';
+import { products } from '../../datas/product';
+import ProductCard from '../common/ProductCard';
 
 
 
-    //     let s: HTMLScriptElement[] = [];
-    //     productsScript.forEach((script) => {
-    //         const scriptElement = document.createElement("script");
-    //         scriptElement.src = script;
-    //         scriptElement.async = false;
-    //         document.body.appendChild(scriptElement);
-    //         s.push(scriptElement);
-    //     });
-
-    //     return () => {
-    //         s.forEach((script) => {
-    //             document.body.removeChild(script); // Cleanup
-    //         });
-    //         l.forEach((link) => {
-    //             document.head.removeChild(link); // Cleanup
-    //         });
-    //     };
-    // }, []);
+const Products = () => {
 
 
     return (
@@ -100,83 +64,17 @@ const Products = (props: Props) => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-4 d-flex">
-                                    <div className="product ftco-animate">
-                                        <div
-                                            className="img d-flex align-items-center justify-content-center"
-                                            style={{ backgroundImage: "url(images/prod-1.jpg)" }}
-                                        >
-                                            <div className="desc">
-                                                <p className="meta-prod d-flex">
-                                                    <a
-                                                        href="#"
-                                                        className="d-flex align-items-center justify-content-center"
-                                                    >
-                                                        <span className="flaticon-shopping-bag" />
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="d-flex align-items-center justify-content-center"
-                                                    >
-                                                        <span className="flaticon-heart" />
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="d-flex align-items-center justify-content-center"
-                                                    >
-                                                        <span className="flaticon-visibility" />
-                                                    </a>
-                                                </p>
-                                            </div>
+                                {products.map((product, i) => {
+                                    return (
+                                        <div className="col-md-4 d-flex">
+                                            <ProductCard key={i} product={product} />
                                         </div>
-                                        <div className="text text-center">
-                                            <span className="sale">Sale</span>
-                                            <span className="category">Brandy</span>
-                                            <h2>Bacardi 151</h2>
-                                            <p className="mb-0">
-                                                <span className="price price-sale">$69.00</span>{" "}
-                                                <span className="price">$49.00</span>
-                                            </p>
-                                        </div>
-                                    </div>
+                                    );
+                                })}
+                                <div className='col-md-12'>
+                                    <img src={images.logoProductInformation} alt="logo" style={{width: "-webkit-fill-available"}}/>
                                 </div>
-                                <div className="col-md-4 d-flex">
-                                    <div className="product ftco-animate">
-                                        <div
-                                            className="img d-flex align-items-center justify-content-center"
-                                            style={{ backgroundImage: "url(images/prod-2.jpg)" }}
-                                        >
-                                            <div className="desc">
-                                                <p className="meta-prod d-flex">
-                                                    <a
-                                                        href="#"
-                                                        className="d-flex align-items-center justify-content-center"
-                                                    >
-                                                        <span className="flaticon-shopping-bag" />
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="d-flex align-items-center justify-content-center"
-                                                    >
-                                                        <span className="flaticon-heart" />
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="d-flex align-items-center justify-content-center"
-                                                    >
-                                                        <span className="flaticon-visibility" />
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="text text-center">
-                                            <span className="seller">Best Seller</span>
-                                            <span className="category">Gin</span>
-                                            <h2>Jim Beam Kentucky Straight</h2>
-                                            <span className="price">$69.00</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                {/*
                                 <div className="col-md-4 d-flex">
                                     <div className="product ftco-animate">
                                         <div
@@ -213,7 +111,7 @@ const Products = (props: Props) => {
                                             <span className="price">$69.00</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
 
                             </div>
                             {/* <div className="row mt-5">

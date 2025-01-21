@@ -1,7 +1,7 @@
 // import "./App.css";
 // import "primereact/resources/primereact.min.css";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./components/main/Home";
 
 // import "../css/animate.css";
@@ -11,33 +11,32 @@ import Home from "./components/main/Home";
 // import "../css/flaticon.css";
 // import "../css/style.css";
 
-import Products from "./components/main/Products";
-import Contact from "./components/main/Contact";
-import About from "./components/main/About";
-import OwlCarousel from "./components/common/OwlCarousel";
-import Blog from "./components/main/Blog";
-import { indexStyle } from "./include/include";
 import { useMemo } from "react";
+import OwlCarousel from "./components/common/OwlCarousel";
+import About from "./components/main/About";
+import Blog from "./components/main/Blog";
+import Contact from "./components/main/Contact";
+import Products from "./components/main/Products";
+import { indexStyle } from "./include/include";
 
 function App() {
 
     useMemo(() => {
-        let l = [];
+        // let l: HTMLLinkElement[] = [];
         // Link for head
         [...indexStyle].forEach((linkHref) => {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
             link.href = linkHref;
             document.head.appendChild(link);
-            l.push(link);
-
+            // l.push(link);
         });
 
         return () => {
-            console.log(l.length);
-            l.forEach((link) => {
-                document.head.removeChild(link); // Cleanup
-            });
+            // console.log(l.length);
+            // l.forEach((link) => {
+            //     document.head.removeChild(link); // Cleanup
+            // });
         };
     }, []);
     
@@ -53,6 +52,7 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/owl" element={<OwlCarousel />} />
                     <Route path="/blog" element={<Blog />} />
+                    <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </BrowserRouter>
         </>

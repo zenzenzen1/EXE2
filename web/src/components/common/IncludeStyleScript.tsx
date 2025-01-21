@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from 'react'
-import { contactScript, indexScript, indexStyle, productsScript, productsStyle } from '../../include/include';
+import { useEffect } from 'react';
+import { indexScript } from '../../include/include';
 
 interface Props {
     scripts?: string[];

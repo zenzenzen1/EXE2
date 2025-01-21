@@ -1,11 +1,9 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { information } from '../../include/information'
 import { links } from '../../include/include'
+import { information } from '../../include/information'
 
-type Props = {}
 
-const Footer = (props: Props) => {
+const Footer = () => {
     return (
         <>
             <footer className="ftco-footer">
@@ -40,7 +38,7 @@ const Footer = (props: Props) => {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md">
+                        {/* <div className="col-sm-12 col-md">
                             <div className="ftco-footer-widget mb-4 ml-md-4">
                                 <h2 className="ftco-heading-2">My Accounts</h2>
                                 <ul className="list-unstyled">
@@ -70,7 +68,7 @@ const Footer = (props: Props) => {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="col-sm-12 col-md">
                             <div className="ftco-footer-widget mb-4 ml-md-4">
                                 <h2 className="ftco-heading-2">Information</h2>

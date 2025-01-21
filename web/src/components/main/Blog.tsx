@@ -1,14 +1,12 @@
-import React from 'react'
-import Footer from '../common/Footer'
-import IncludeStyleScript from '../common/IncludeStyleScript'
-import Header from '../common/Header'
-import { navElements } from '../../include/include'
-import { images } from '../../include/images'
 import { Link } from 'react-router-dom'
+import { images } from '../../include/images'
+import { navElements } from '../../include/include'
+import Footer from '../common/Footer'
+import Header from '../common/Header'
+import IncludeStyleScript from '../common/IncludeStyleScript'
 
-type Props = {}
 
-function Blog({ }: Props) {
+function Blog() {
     return (
         <>
             <IncludeStyleScript />
@@ -46,7 +44,7 @@ function Blog({ }: Props) {
                                 <a
                                     href="blog-single.html"
                                     className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_2.jpg")' }}
+                                    style={{ backgroundImage: 'url("/images/image_2.jpg")' }}
                                 ></a>
                                 <div className="text p-4 bg-light">
                                     <div className="meta">
@@ -72,7 +70,7 @@ function Blog({ }: Props) {
                                 <a
                                     href="blog-single.html"
                                     className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_1.jpg")' }}
+                                    style={{ backgroundImage: 'url("/images/image_1.jpg")' }}
                                 ></a>
                                 <div className="text p-4 bg-light">
                                     <div className="meta">
@@ -98,7 +96,7 @@ function Blog({ }: Props) {
                                 <a
                                     href="blog-single.html"
                                     className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_3.jpg")' }}
+                                    style={{ backgroundImage: 'url("/images/image_3.jpg")' }}
                                 ></a>
                                 <div className="text p-4 bg-light">
                                     <div className="meta">
@@ -124,7 +122,7 @@ function Blog({ }: Props) {
                                 <a
                                     href="blog-single.html"
                                     className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_4.jpg")' }}
+                                    style={{ backgroundImage: 'url("/images/image_4.jpg")' }}
                                 ></a>
                                 <div className="text p-4 bg-light">
                                     <div className="meta">
@@ -150,7 +148,7 @@ function Blog({ }: Props) {
                                 <a
                                     href="blog-single.html"
                                     className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_5.jpg")' }}
+                                    style={{ backgroundImage: 'url("/images/image_5.jpg")' }}
                                 ></a>
                                 <div className="text p-4 bg-light">
                                     <div className="meta">
@@ -176,7 +174,7 @@ function Blog({ }: Props) {
                                 <a
                                     href="blog-single.html"
                                     className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_6.jpg")' }}
+                                    style={{ backgroundImage: 'url("/images/image_6.jpg")' }}
                                 ></a>
                                 <div className="text p-4 bg-light">
                                     <div className="meta">

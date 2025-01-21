@@ -1,15 +1,14 @@
-import React, { MouseEvent, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { contactScript, indexScript, indexStyle, links, navElements, socialMediaLinks } from '../../include/include';
-import Header from '../common/Header';
+import { MouseEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { images } from '../../include/images';
+import { links, navElements } from '../../include/include';
 import { information } from '../../include/information';
 import Footer from '../common/Footer';
+import Header from '../common/Header';
 import IncludeStyleScript from '../common/IncludeStyleScript';
-import { images } from '../../include/images';
 
-type Props = {}
 
-const Contact = (props: Props) => {
+const Contact = () => {
     
     const [contact, setContact] = useState<{name: string, email: string, message: string, subject: string}>({
         name: "",
@@ -17,6 +16,9 @@ const Contact = (props: Props) => {
         message: "",
         subject: ""});
     const sendEmail = (e: MouseEvent) => {
+        e.preventDefault();
+        console.log(contact);
+        setContact({name: "", email: "", message: "", subject: ""});
     }
     return (
         <>
@@ -119,7 +121,7 @@ const Contact = (props: Props) => {
                                     </div>
                                 </div>
                                 <div className="row no-gutters">
-                                    <div className="col-md-7">
+                                    <div className="col-md-12">
                                         <div className="contact-wrap w-100 p-md-5 p-4">
                                             <h3 className="mb-4">Contact Us</h3>
                                             <form
@@ -202,9 +204,9 @@ const Contact = (props: Props) => {
                                             </form>
                                         </div>
                                     </div>
-                                    <div className="col-md-5 order-md-first d-flex align-items-stretch">
+                                    {/* <div className="col-md-5 order-md-first d-flex align-items-stretch">
                                         <div id="map" className="map" />
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -213,29 +215,7 @@ const Contact = (props: Props) => {
             </section>
             <Footer />
             {/* loader */}
-            <div id="ftco-loader" className="show fullscreen">
-                <svg className="circular" width="48px" height="48px">
-                    <circle
-                        className="path-bg"
-                        cx={24}
-                        cy={24}
-                        r={22}
-                        fill="none"
-                        strokeWidth={4}
-                        stroke="#eeeeee"
-                    />
-                    <circle
-                        className="path"
-                        cx={24}
-                        cy={24}
-                        r={22}
-                        fill="none"
-                        strokeWidth={4}
-                        strokeMiterlimit={10}
-                        stroke="#F96D00"
-                    />
-                </svg>
-            </div>
+            
         </>
 
     )

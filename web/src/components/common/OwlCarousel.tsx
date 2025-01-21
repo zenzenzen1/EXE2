@@ -1,12 +1,10 @@
-import React from 'react'
 
-type Props = {}
 
-const OwlCarousel = (props: Props) => {
+const OwlCarousel = () => {
     return (
         <>
             <iframe
-                src="/owl.html"
+                src="./owl.html"
                 title="Embedded HTML"
                 width="100%"
                 height="700px"

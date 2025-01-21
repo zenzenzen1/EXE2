@@ -27,4 +27,6 @@ export const images = {
         }
     ],
     about: "/images/main/nem-nam-giao-thuy-ha-noi.jpg",
+    logo: "/images/logo/z6249456654980_4d99dcdc90f93916b424022cce2ab13d.jpg",
+    logoProductInformation: "/images/logo/z6249442215344_04adb32385ef0905671af5e357eb802c.jpg",
 };

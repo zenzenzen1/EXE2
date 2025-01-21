@@ -7,3 +7,15 @@ div.social-media.mr-4 p.mb-0.d-flex a span{
     color: white;
     font-size: large;
 }
+
+#ftco-nav ul.navbar-nav li a {
+    color: rgba(255, 255, 255, 1);
+}
+
+#ftco-nav ul.navbar-nav li.active a {
+    color: #b7472a;
+}
+
+div.container a.navbar-brand span {
+    color: white;
+}
