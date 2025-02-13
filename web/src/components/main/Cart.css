@@ -1,0 +1,27 @@
+table.table.product-table th{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+table.table.product-table td {
+    padding-left: 5px;
+    padding-right: 0px;
+    font-weight: 400;
+}
+table.table.product-table td:nth-child(1) {
+    width: 9%;
+}
+table.table.product-table td:nth-child(2) {
+    width: 34%;
+}
+table.table.product-table td:nth-child(3) {
+    width: 6%;
+    font-size: 19px;
+}
+table.table.product-table td:nth-child(4) {
+    width: 9%;
+}
+table.table.product-table td:nth-child(5) {
+    width: 9%;
+    font-size: 19px;
+}

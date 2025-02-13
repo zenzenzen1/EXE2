@@ -72,7 +72,41 @@ const Products = () => {
                                     );
                                 })}
                                 <div className='col-md-12'>
-                                    <img src={images.logoProductInformation} alt="logo" style={{width: "-webkit-fill-available"}}/>
+                                    <img src={images.logoProductInformation} alt="logo" style={{ width: "-webkit-fill-available" }} />
+                                </div>
+                                <div style={{ color: 'black' }}>
+
+                                    <div className='col-md-12'>
+                                        <h2>
+                                            Thông tin sản phẩm:
+                                        </h2>
+                                        Trọng lượng: 500g/gói
+                                        <p className='mb-0'>
+                                            Thành phần: Thịt heo, bì heo, gia vị tự nhiên (tỏi, ớt, đường, muối, thính gạo).
+
+                                        </p>
+                                        <p className='mb-0'>
+                                            Hạn sử dụng: 7 ngày kể từ ngày sản xuất.
+                                        </p>
+                                        <p className='mb-0'>
+                                            Bảo quản: Nhiệt độ 4-6°C.
+                                        </p>
+                                        <p className='mb-0'>
+                                            Giá: 60,000 VND/gói
+                                        </p>
+                                        <h2>
+                                            Cách thưởng thức:
+                                        </h2>
+                                        <p className='mb-0'>
+                                            Ăn liền với lá sung và chấm nước mắm pha chua ngọt.
+                                        </p>
+                                        <p className='mb-0'>
+                                            Dùng làm món khai vị hoặc món nhậu đều hấp dẫn.
+                                        </p>
+                                        {/* <p className='mb-0'>
+                                            Đặt hàng ngay để thưởng thức hương vị truyền thống của Nem Thành Nam!
+                                        </p> */}
+                                    </div>
                                 </div>
                                 {/*
                                 <div className="col-md-4 d-flex">
@@ -267,6 +301,7 @@ const Products = () => {
                     </div>
                 </div>
             </section>
+
             <Footer />
         </>
 

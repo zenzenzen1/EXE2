@@ -7,43 +7,11 @@ import FtcoIntro from '../common/FtcoIntro';
 import FtcoKind from '../common/FtcoKind';
 import Header from '../common/Header';
 import IncludeStyleScript from '../common/IncludeStyleScript';
-import OwlCarousel from '../common/OwlCarousel';
 import SmallAbout from '../common/SmallAbout';
 
 const Home = () => {
-
-    // useEffect(() => {
-    //     let l: HTMLLinkElement[] = [];
-    //     // Link for head
-    //     indexStyle.forEach((linkHref) => {
-    //         const link = document.createElement('link');
-    //         link.rel = 'stylesheet';
-    //         link.href = linkHref;
-    //         document.head.appendChild(link);
-    //         l.push(link);
-
-    //     });
-
-
-    //     let s: HTMLScriptElement[] = [];
-    //     indexScript.forEach((script) => {
-    //         const scriptElement = document.createElement("script");
-    //         scriptElement.src = script;
-    //         scriptElement.async = false;
-    //         document.body.appendChild(scriptElement);
-    //         s.push(scriptElement);
-    //     });
-
-    //     return () => {
-    //         s.forEach((script) => {
-    //             document.body.removeChild(script); // Cleanup
-    //         });
-    //         l.forEach((link) => {
-    //             document.head.removeChild(link); // Cleanup
-    //         });
-    //     };
-    // }, []);
-
+    (() => {
+    })();
     return (
         <>
             <IncludeStyleScript />
@@ -62,7 +30,7 @@ const Home = () => {
                 <div className="overlay" />
                 <div className="container">
                     <div className="row no-gutters slider-text align-items-center justify-content-center">
-                        <div className="col-md-8 ftco-animate d-flex align-items-end">
+                        <div className="col-md-11 ftco-animate d-flex align-items-end">
                             <div className="text w-100 text-center">
                                 <h1 className="mb-4"
                                     dangerouslySetInnerHTML={{
@@ -239,7 +207,7 @@ const Home = () => {
             </section> */}
 
 
-            <OwlCarousel />
+            {/* <OwlCarousel /> */}
 
             <section className="position-relative">
                 <div className="container">

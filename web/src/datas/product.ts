@@ -60,3 +60,9 @@ export const products: ProductType[] = [
         // }
     }
 ]
+
+export const productInformation = {
+    price: 60000,
+    maxQuantity: 100,
+    minQuantity: 1
+}

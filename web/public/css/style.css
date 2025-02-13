@@ -8907,10 +8907,10 @@ h1, h2, h3, h4, h5,
         width: 32%; }
 
 .table-wrap {
-  overflow-x: scroll; }
+  overflow-x: auto; 
+}
 
 .table {
-  min-width: 1000px !important;
   width: 100%;
   background: #fff;
   -webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
@@ -9009,7 +9009,7 @@ h1, h2, h3, h4, h5,
 .cart-total {
   width: 100%;
   display: block;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   padding: 20px; }
   .cart-total h3 {
     font-size: 24px;

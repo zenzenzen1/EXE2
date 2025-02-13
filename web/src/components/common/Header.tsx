@@ -72,14 +72,14 @@ const Header = (props: Props) => {
                 </div>
                 <div className="container">
                     <Link to={links.home} >
-                        <img src={images.logo} alt="logo" width={"40px"} height={"40px"} style={{borderRadius: "100%"}}/>
+                        <img src={images.logo} alt="logo" width={"40px"} height={"40px"} style={{ borderRadius: "100%" }} />
                     </Link>
                     <Link to={links.home} className="navbar-brand" >
                         Nem <span>Thành Nam</span>
                     </Link>
                     {/* Card Icon + function */}
-                    {/* <div className="order-lg-last btn-group">
-                        <a
+                    <div className="order-lg-last btn-group">
+                        {/* <a
                             href="#"
                             className="btn-cart dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown"
@@ -88,10 +88,16 @@ const Header = (props: Props) => {
                         >
                             <span className="flaticon-shopping-bag" />
                             <div className="d-flex justify-content-center align-items-center">
-                                <small>3</small>
+                                <small>2</small>
                             </div>
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right">
+                        </a> */}
+                        <Link to={"/cart"} className='btn-cart dropdown-toggle dropdown-toggle-split' >
+                            <span className="flaticon-shopping-bag" />
+                            <div className="d-flex justify-content-center align-items-center">
+                                <small>2</small>
+                            </div>
+                        </Link>
+                        {/* <div className="dropdown-menu dropdown-menu-right">
                             <div className="dropdown-item d-flex align-items-start" >
                                 <div
                                     className="img"
@@ -144,8 +150,8 @@ const Header = (props: Props) => {
                                 View All
                                 <span className="ion-ios-arrow-round-forward" />
                             </a>
-                        </div>
-                    </div> */}
+                        </div> */}
+                    </div>
                     <button
                         className="navbar-toggler"
                         type="button"

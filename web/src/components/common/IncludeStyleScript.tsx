@@ -36,8 +36,6 @@ const IncludeStyleScript = (props: Props = { scripts: [], links: [] }) => {
                 scriptElement.crossOrigin = "anonymous";
 
             }
-            else {
-            }
             scriptElement.async = false;
 
             document.body.appendChild(scriptElement);
@@ -49,6 +47,7 @@ const IncludeStyleScript = (props: Props = { scripts: [], links: [] }) => {
                 document.body.removeChild(script); // Cleanup
             });
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <></>
