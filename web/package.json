@@ -21,6 +21,7 @@
         "react-bootstrap-select": "^0.14.0",
         "react-dom": "^18.3.1",
         "react-router-dom": "^7.1.1",
+        "react-toastify": "^11.0.3",
         "react-transition-group": "^4.4.5",
         "tailwind-merge": "^2.6.0",
         "typeorm": "^0.3.20",

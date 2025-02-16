@@ -22,6 +22,9 @@ import Vnpay from "./components/payment/Vnpay";
 import Cart from "./components/main/Cart";
 import Checkout from "./components/main/Checkout";
 import PayOS from "./components/payment/PayOS";
+import PaymentSuccess from "./components/payment/PaymentSuccess";
+import PaymentCancel from "./components/payment/PaymentCancel";
+import Demo from "./components/demo/Demo";
 
 // import "./App.css";
 
@@ -63,6 +66,9 @@ function App() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/payos" element={<PayOS />} />
+                    <Route path="/order/success" element={<PaymentSuccess />} />
+                    <Route path="/order/cancel" element={<PaymentCancel />} />
+                    <Route path="/demo" element={<Demo />} />
                     
                     <Route path="*" element={<Navigate to="/" />} />
                 </Routes>

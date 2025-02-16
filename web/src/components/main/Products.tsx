@@ -66,7 +66,7 @@ const Products = () => {
                             <div className="row">
                                 {products.map((product, i) => {
                                     return (
-                                        <div className="col-md-4 d-flex">
+                                        <div key={i} className="col-md-4 d-flex">
                                             <ProductCard key={i} product={product} />
                                         </div>
                                     );

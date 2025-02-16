@@ -1,17 +1,46 @@
-import { ChangeEvent, FocusEvent, useMemo, useState } from "react";
+import { ChangeEvent, FocusEvent, useEffect, useMemo, useState } from "react";
 import { productInformation } from "../../datas/product";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import IncludeStyleScript from "../common/IncludeStyleScript";
 import "./Cart.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { CartType } from "../../types/cart";
+import { toast, ToastContainer } from "react-toastify";
+import { PaymentStatus } from "../../types/Checkout";
+import { images } from "../../include/images";
 
 function Cart() {
+    const location = useLocation();
+    if (location.state && location.state.paymentStatus === PaymentStatus.CANCEL) {
+        toast.warn("Bạn đã hủy thanh toán");
+        location.state.paymentStatus = undefined;
+    }
+    
+    useEffect(() => {
+        return () => {
+        }
+    }, []);
+    const delivery = productInformation.delivery;
+    const discount = productInformation.discount;
     const [quantity, setQuantity] = useState<number | undefined>();
-
-
+    const [cart, setCart] = useState<CartType>({
+        productName: "Nem Nắm Truyền Thống Nam Định",
+        productQuantity: quantity || 1,
+        subTotal: productInformation.price * (quantity || 1),
+        delivery: delivery,
+        discount: discount,
+        total: productInformation.price * (quantity || 1) + delivery - discount
+    });
+    
     const totalPrice = useMemo(() => {
-        return productInformation.price * (quantity || 0);
+        quantity && setCart({
+            ...cart,
+            productQuantity: quantity || 1,
+            subTotal: productInformation.price * (quantity || 1),
+            total: productInformation.price * (quantity || 1) + delivery - discount
+        });
+        return productInformation.price * (quantity || 1);
     }, [quantity]);
 
     const handleChangeQuantity = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +63,7 @@ function Cart() {
 
     const handleBlurQuantity = (_e: FocusEvent<HTMLInputElement>) => {
         if (!quantity) {
-            // setQuantity(productInformation.minQuantity);
+            setQuantity(productInformation.minQuantity);
         }
     }
     
@@ -42,10 +71,11 @@ function Cart() {
     return (
         <>
             <IncludeStyleScript />
+            <ToastContainer draggable/>
             <Header navChossen="" />
             <section
                 className="hero-wrap hero-wrap-2"
-                style={{ backgroundImage: 'url("images/bg_2.jpg")' }}
+                style={{ backgroundImage: `url(${images.mainImage})` }}
                 data-stellar-background-ratio="0.5"
             >
                 <div className="overlay" />
@@ -113,7 +143,7 @@ function Cart() {
                                             <td>
                                                 <div
                                                     className="img"
-                                                    style={{ backgroundImage: "url(images/prod-1.jpg)" }}
+                                                    style={{ backgroundImage: `url(${images.ftcoKinks[1].url})` }}
                                                 />
                                             </td>
                                             <td>
@@ -161,24 +191,24 @@ function Cart() {
                                     <h3>Cart Totals</h3>
                                     <p className="d-flex">
                                         <span>Subtotal</span>
-                                        <span>$20.60</span>
+                                        <span>{cart.subTotal}</span>
                                     </p>
                                     <p className="d-flex">
                                         <span>Delivery</span>
-                                        <span>$0.00</span>
+                                        <span>{cart.delivery}</span>
                                     </p>
                                     <p className="d-flex">
                                         <span>Discount</span>
-                                        <span>$3.00</span>
+                                        <span>{cart.discount}</span>
                                     </p>
                                     <hr />
                                     <p className="d-flex total-price">
                                         <span>Total</span>
-                                        <span>$17.60</span>
+                                        <span>{cart.total}</span>
                                     </p>
                                 </div>
                                 <p className="text-center">
-                                    <Link to="/checkout" className="btn btn-primary py-3 px-4">
+                                    <Link to="/checkout" state={cart} className="btn btn-primary py-3 px-4">
                                         Proceed to Checkout
                                     </Link>
 
