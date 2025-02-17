@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { images } from '../../include/images';
 import { links, navElements } from '../../include/include';
 import { information } from '../../include/information';
@@ -8,13 +8,22 @@ import FtcoKind from '../common/FtcoKind';
 import Header from '../common/Header';
 import IncludeStyleScript from '../common/IncludeStyleScript';
 import SmallAbout from '../common/SmallAbout';
+import { PaymentStatus } from '../../types/Checkout';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Home = () => {
+    const location = useLocation();
+    if (location.state && location.state.paymentStatus === PaymentStatus.SUCCESS) {
+        toast.success("Thanh Toán thành công. Bạn hãy check mail và số điện thoại thường xuyên.");
+        location.state.paymentStatus = undefined;
+    }
+    
     (() => {
     })();
     return (
         <>
             <IncludeStyleScript />
+            <ToastContainer />
             {/* Header */}
             <Header navChossen={navElements.home} />
 

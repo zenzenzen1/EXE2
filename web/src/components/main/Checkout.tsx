@@ -1,19 +1,20 @@
-import { useLocation } from "react-router-dom";
-import Footer from "../common/Footer"
-import Header from "../common/Header"
-import IncludeStyleScript from "../common/IncludeStyleScript"
-import { useState } from "react";
-import { CartType } from "../../types/cart";
-import { images } from "../../include/images";
-import { InputText } from "primereact/inputtext";
 import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
-import { CheckoutType, PaymentRequestType } from "../../types/Checkout";
+import { InputText } from "primereact/inputtext";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import httpClient from "../../configurations/HttpClient";
 import { productInformation } from "../../datas/product";
+import { images } from "../../include/images";
+import { CartType } from "../../types/cart";
+import { CheckoutType } from "../../types/Checkout";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import IncludeStyleScript from "../common/IncludeStyleScript";
 
 
 function Checkout() {
     const location = useLocation();
+    const navigate = useNavigate();
     const cart = location.state as CartType;
     console.log(cart);
     const [loading, setLoading] = useState<boolean>(false);
@@ -26,6 +27,8 @@ function Checkout() {
         phoneNumber: "",
         priceInformation: cart
     });
+
+
 
     const findLocation = () => {
         if (navigator.geolocation) {
@@ -68,16 +71,37 @@ function Checkout() {
         // }, 3000);
         httpClient.post("/create-payment-link", {
             amount: checkoutInformation.priceInformation.total,
+            description: `Thanh toán ${cart.productQuantity} Nem Nắm`,
             buyerName: checkoutInformation.name,
             buyerEmail: checkoutInformation.email,
             buyerPhone: checkoutInformation.phone,
             buyerAddress: checkoutInformation.address + ". " + checkoutInformation.additionalAddress,
-            items: {
-                name: productInformation.name,
-                price: productInformation.price,
-                quantity: cart.productQuantity
-            }
-        } as PaymentRequestType)
+            items: [
+                {
+                    name: productInformation.name,
+                    price: productInformation.price,
+                    quantity: cart.productQuantity
+                }
+            ]
+        }, {
+            headers: {},
+            // data: {
+
+            // } as PaymentRequestType,
+        }
+
+        )
+            .then(res => {
+                console.log(res.data.checkoutUrl);
+                window.location.href = res.data.checkoutUrl;
+                setLoading(false);
+
+            })
+            .catch(err => {
+                console.log(err);
+                setLoading(false);
+            })
+            ;
 
     }
 

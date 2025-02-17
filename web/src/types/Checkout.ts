@@ -1,6 +1,7 @@
 import { CartType } from "./cart"
 
 export type PaymentRequestType = {
+    description: string,
     amount: number,
     buyerName: string,
     buyerEmail: string,
@@ -37,7 +38,7 @@ export type PaymentInformationType = {
 }
 
 export const PaymentStatus = {
-    SUCCESS: "success",
+    SUCCESS: "PAID",
     CANCEL: "CANCELLED",
     PENDING: "pending",
     PROCESSING: "processing"

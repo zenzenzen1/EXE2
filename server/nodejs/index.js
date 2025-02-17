@@ -44,7 +44,7 @@ app.post('/create-payment-link', async (req, res) => {
     // const paymentLink = req.body;
     const orderCode = Number(parseInt(crypto.randomBytes(5).toString("hex"), 16).toString().slice(0, 10));
     const order = {
-        amount: req.body.amount,
+        amount: 5000,
         description: req.body.description,
         orderCode: orderCode,
         returnUrl: `${RETURN_URL}`,
@@ -70,6 +70,13 @@ app.post('/create-payment-link', async (req, res) => {
     payos.createPaymentLink(order)
         .then((paymentLink) => {
             res.status(200).json(paymentLink);
+            payment({ orderCode: "6176861681", amount: 5000, description: "CSM1W5K8S37 Thanh Toan", accountNumber: "V3CAS8854359196", currency: "VND", 
+                paymentLinkId: "9bcd4389a2a14edda42c62ccc39a1900", status: "PENDING", 
+                transactionDateTime: Date.now().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+                product: products,
+                quantity: 1
+            })
+                .save();
         })
         .catch((error) => {
             console.log(error);
@@ -94,8 +101,8 @@ app.post('/create-payment-link', async (req, res) => {
 
 */
 
-app.get('/order/success', async (req, res) => {
-    console.log(req.query);
+app.post('/order/success', async (req, res) => {
+    console.log(req.body);
     res.status(200).send();
 });
 
@@ -129,8 +136,8 @@ app.get("/payment-info", async (req, res) => {
 
 //https://f87f-125-235-235-218.ngrok-free.app
 app.post(domain + "/receive-hook", async (req, res) => {
-    console.log(req.body);
-    res.status(200).send();
+    console.log(JSON.stringify(req.body));
+    
 });
 
 app.use("/test", router);
