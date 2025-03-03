@@ -10,14 +10,36 @@ import IncludeStyleScript from '../common/IncludeStyleScript';
 import SmallAbout from '../common/SmallAbout';
 import { PaymentStatus } from '../../types/Checkout';
 import { toast, ToastContainer } from 'react-toastify';
+import { blogs } from '../../datas/blogs';
+import { useEffect } from 'react';
 
 const Home = () => {
     const location = useLocation();
-    if (location.state && location.state.paymentStatus === PaymentStatus.SUCCESS) {
-        toast.success("Thanh Toán thành công. Bạn hãy check mail và số điện thoại thường xuyên.");
-        location.state.paymentStatus = undefined;
-    }
-    
+    useEffect(() => {
+        // console.log(location.state.paymentStatus === PaymentStatus.ORDER);
+        if (location.state && location.state.paymentStatus === PaymentStatus.SUCCESS) {
+            toast.success("Thanh Toán thành công. Bạn hãy check mail và số điện thoại thường xuyên.", {
+                autoClose: 9000,
+                style:{
+                    width: "90%"
+                }
+            });
+            location.state.paymentStatus = undefined;
+        }
+        if (location.state && location.state.paymentStatus === PaymentStatus.ORDER) {
+            toast.success("Bạn đã đặt hàng thành công. Bạn hãy check mail và số điện thoại thường xuyên.", {
+                autoClose: 9000,
+                style:{
+                    width: "80%",
+                }
+            });
+            // location.state.paymentStatus = undefined;
+            // location.state.paymentStatus = PaymentStatus.ORDER;
+
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     (() => {
     })();
     return (
@@ -47,7 +69,7 @@ const Home = () => {
                                     }}
                                 >
                                 </h1>
-                                <p>
+                                {/* <p>
                                     <Link to={links.home}
                                         className="btn btn-primary py-2 px-4"
                                     >
@@ -58,20 +80,20 @@ const Home = () => {
                                     >
                                         Read more
                                     </Link>
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <FtcoIntro />
 
             <SmallAbout />
 
 
 
-            <section className="ftco-section ftco-no-pb" style={{marginBottom: "6em"}}>
+            <section className="ftco-section ftco-no-pb" style={{ marginBottom: "6em" }}>
                 <div className="container">
                     <div className="row" style={{
                         justifyContent: "center"
@@ -227,110 +249,40 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="row d-flex">
-                        <div className="col-lg-6 d-flex align-items-stretch ftco-animate">
-                            <div className="blog-entry d-flex">
-                                <a
-                                    href="blog-single.html"
-                                    className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_1.jpg")' }}
-                                ></a>
-                                <div className="text p-4 bg-light">
-                                    <div className="meta">
-                                        <p>
-                                            <span className="fa fa-calendar" /> 23 April 2020
-                                        </p>
+                        {blogs.map((blog, index) => {
+                            if (index > 3) return null
+                            return (<>
+                                <div key={index} className="col-lg-6 d-flex align-items-stretch ftco-animate">
+                                    <div className="blog-entry d-md-flex">
+                                        <a
+                                            // href="blog-single.html"  '
+                                            href={blog.link}
+                                            className="block-20 img"
+                                            // style={{ backgroundImage: `url("/images/image_2.jpg")` }}
+                                            style={{ backgroundImage: `url(${blog.image})` }}
+                                            target='_blank'
+                                        ></a>
+                                        <div className="text p-4 bg-light">
+                                            <div className="meta">
+                                                <p>
+                                                    {/* <span className="fa fa-calendar" /> 23 April 2020 */}
+                                                    <span className="fa fa-calendar" /> {blog.date}
+                                                </p>
+                                            </div>
+                                            <h3 className="heading mb-3">
+                                                <a href={blog.link} target='_blank'>{blog.title}</a>
+                                            </h3>
+                                            <p>
+                                                {blog.smallDescription}
+                                            </p>
+                                            <a href={blog.link} target='_blank' className="btn-custom">
+                                                Continue <span className="fa fa-long-arrow-right" />
+                                            </a>
+                                        </div>
                                     </div>
-                                    <h3 className="heading mb-3">
-                                        <a href="#">The Recipe from a Winemaker’s Restaurent</a>
-                                    </h3>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                    <a href="#" className="btn-custom">
-                                        Continue <span className="fa fa-long-arrow-right" />
-                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-6 d-flex align-items-stretch ftco-animate">
-                            <div className="blog-entry d-flex">
-                                <a
-                                    href="blog-single.html"
-                                    className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_2.jpg")' }}
-                                ></a>
-                                <div className="text p-4 bg-light">
-                                    <div className="meta">
-                                        <p>
-                                            <span className="fa fa-calendar" /> 23 April 2020
-                                        </p>
-                                    </div>
-                                    <h3 className="heading mb-3">
-                                        <a href="#">The Recipe from a Winemaker’s Restaurent</a>
-                                    </h3>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                    <a href="#" className="btn-custom">
-                                        Continue <span className="fa fa-long-arrow-right" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-6 d-flex align-items-stretch ftco-animate">
-                            <div className="blog-entry d-flex">
-                                <a
-                                    href="blog-single.html"
-                                    className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_3.jpg")' }}
-                                ></a>
-                                <div className="text p-4 bg-light">
-                                    <div className="meta">
-                                        <p>
-                                            <span className="fa fa-calendar" /> 23 April 2020
-                                        </p>
-                                    </div>
-                                    <h3 className="heading mb-3">
-                                        <a href="#">The Recipe from a Winemaker’s Restaurent</a>
-                                    </h3>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                    <a href="#" className="btn-custom">
-                                        Continue <span className="fa fa-long-arrow-right" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-6 d-flex align-items-stretch ftco-animate">
-                            <div className="blog-entry d-flex">
-                                <a
-                                    href="blog-single.html"
-                                    className="block-20 img"
-                                    style={{ backgroundImage: 'url("images/image_4.jpg")' }}
-                                ></a>
-                                <div className="text p-4 bg-light">
-                                    <div className="meta">
-                                        <p>
-                                            <span className="fa fa-calendar" /> 23 April 2020
-                                        </p>
-                                    </div>
-                                    <h3 className="heading mb-3">
-                                        <a href="#">The Recipe from a Winemaker’s Restaurent</a>
-                                    </h3>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                    <a href="#" className="btn-custom">
-                                        Continue <span className="fa fa-long-arrow-right" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                            </>)
+                        })}
                     </div>
                 </div>
             </section>

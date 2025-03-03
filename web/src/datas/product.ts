@@ -68,4 +68,7 @@ export const productInformation = {
     name: "Nem Nắm Tryền Thống Nam Định",
     delivery: 0,
     discount: 0,
+    weight: "500g/gói",
+    ingredient: "Thịt heo, bì heo, gia vị tự nhiên (tỏi, ớt, đường, muối, thính gạo).",
+    expiryDate: "10 ngày kể từ ngày sản xuất.",
 }

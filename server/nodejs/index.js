@@ -9,17 +9,23 @@ const { connectDb } = require('./src/config/db');
 const mongoose = require('mongoose');
 const { default: payment } = require('./src/model/payment');
 
+const WEB_DOMAIN = "https://nemthanhnam.azurewebsites.net";
+// const WEB_DOMAIN = "http://localhost:5173";
+
 const payos = new PayOS("98634d18-0884-4ef3-a3c5-538fcd840aad", "3164439a-3d38-4762-acfe-392601c4e968", "99751b6228e2ed042d8240dabdd9e92af8bf1f2b6d574a7ed15a5e1c117e896a");
 const app = express();
+app.use(cors({
+    // origin: ["http://localhost:3000", WEB_DOMAIN],
+    origin: "*",
+    methods: "GET,POST,PUT,DELETE",
+}));
 app.use(express.static('public'));
 app.use(express.json());
 
-app.use(cors());
 
-// const domain = "https://nemthanhnam-nodejs.azurewebsites.net";
+const domain = "https://nemthanhnam-nodejs.azurewebsites.net";
+// const domain = "http://localhost:" + port;
 const port = 3001;
-const domain = "http://localhost:" + port;
-const WEB_DOMAIN = "http://localhost:5173";
 const RETURN_URL = WEB_DOMAIN + "/order/success";
 const CANCEL_URL = WEB_DOMAIN + "/order/cancel";
 
@@ -30,13 +36,13 @@ app.get('/products', async (req, res) => {
     const products = await product.findById(new ObjectId("67b1af2a75b4d259a840c148"));
     // var query = { campaign_id: new ObjectId(campaign._id) };
     // product({ name: "Iphone 13", price: 10000000 }).save();
-    payment({ orderCode: "6176861681", amount: 5000, description: "CSM1W5K8S37 Thanh Toan", accountNumber: "V3CAS8854359196", currency: "VND", 
-        paymentLinkId: "9bcd4389a2a14edda42c62ccc39a1900", status: "PENDING", 
-        transactionDateTime: Date.now().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
-        product: products,
-        quantity: 1
-    })
-        .save();
+    // payment({ orderCode: "6176861681", amount: 5000, description: "CSM1W5K8S37 Thanh Toan", accountNumber: "V3CAS8854359196", currency: "VND", 
+    //     paymentLinkId: "9bcd4389a2a14edda42c62ccc39a1900", status: "PENDING", 
+    //     transactionDateTime: Date.now().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+    //     product: products,
+    //     quantity: 1
+    // })
+    //     .save();
     res.status(200).json(products);
 });
 
@@ -44,7 +50,7 @@ app.post('/create-payment-link', async (req, res) => {
     // const paymentLink = req.body;
     const orderCode = Number(parseInt(crypto.randomBytes(5).toString("hex"), 16).toString().slice(0, 10));
     const order = {
-        amount: 5000,
+        amount: req.body.amount,
         description: req.body.description,
         orderCode: orderCode,
         returnUrl: `${RETURN_URL}`,

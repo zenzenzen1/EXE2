@@ -93,9 +93,9 @@ const Header = (props: Props) => {
                         </a> */}
                         <Link to={"/cart"} className='btn-cart dropdown-toggle dropdown-toggle-split' >
                             <span className="flaticon-shopping-bag" />
-                            <div className="d-flex justify-content-center align-items-center">
+                            {/* <div className="d-flex justify-content-center align-items-center">
                                 <small>2</small>
-                            </div>
+                            </div> */}
                         </Link>
                         {/* <div className="dropdown-menu dropdown-menu-right">
                             <div className="dropdown-item d-flex align-items-start" >
@@ -170,11 +170,11 @@ const Header = (props: Props) => {
                                     Home
                                 </Link>
                             </li>
-                            <li className={`nav-item ${props.navChossen === navElements.about ? "active" : ""}`} >
+                            {/* <li className={`nav-item ${props.navChossen === navElements.about ? "active" : ""}`} >
                                 <Link to="/about" className="nav-link" >
                                     About
                                 </Link>
-                            </li>
+                            </li> */}
                             <li className={`nav-item 
                                 ${props.navChossen === navElements.products ? "active" : ""}`}
                             // dropdown 

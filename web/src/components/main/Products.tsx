@@ -6,6 +6,7 @@ import Header from '../common/Header';
 import IncludeStyleScript from '../common/IncludeStyleScript';
 import { products } from '../../datas/product';
 import ProductCard from '../common/ProductCard';
+import { blogs } from '../../datas/blogs';
 
 
 
@@ -218,84 +219,38 @@ const Products = () => {
                             </div> */}
                             <div className="sidebar-box ftco-animate">
                                 <h3>Recent Blog</h3>
-                                <div className="block-21 mb-4 d-flex">
-                                    <a
-                                        className="blog-img mr-4"
-                                        style={{ backgroundImage: "url(images/image_1.jpg)" }}
-                                    />
-                                    <div className="text">
-                                        <h3 className="heading">
-                                            <a href="#">
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts
-                                            </a>
-                                        </h3>
-                                        <div className="meta">
-                                            <div>
-                                                <a href="#">
-                                                    <span className="fa fa-calendar" /> Apr. 18, 2020
-                                                </a>
-                                            </div>
-                                            <div>
-                                                <a href="#">
-                                                    <span className="fa fa-comment" /> 19
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="block-21 mb-4 d-flex">
-                                    <a
-                                        className="blog-img mr-4"
-                                        style={{ backgroundImage: "url(images/image_2.jpg)" }}
-                                    />
-                                    <div className="text">
-                                        <h3 className="heading">
-                                            <a href="#">
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts
-                                            </a>
-                                        </h3>
-                                        <div className="meta">
-                                            <div>
-                                                <a href="#">
-                                                    <span className="fa fa-calendar" /> Apr. 18, 2020
-                                                </a>
-                                            </div>
-                                            <div>
-                                                <a href="#">
-                                                    <span className="fa fa-comment" /> 19
-                                                </a>
+                                {blogs.map((blog, i) => {
+                                    if (i > 2) return null
+                                    return (<>
+                                        <div className="block-21 mb-4 d-flex">
+                                            <a
+                                                className="blog-img mr-4"
+                                                style={{ backgroundImage: `url(${blog.image})` }}
+                                            />
+                                            <div className="text">
+                                                <h3 className="heading">
+                                                    <a href={blog.link} target='_blank'>
+                                                        {blog.title.toLowerCase()}
+                                                    </a>
+                                                </h3>
+                                                <div className="meta">
+                                                    <div>
+                                                        <a href={blog.link} target='_blank'>
+                                                            <span className="fa fa-calendar" /> {blog.date}
+                                                        </a>
+                                                    </div>
+                                                    <div>
+                                                        {/* <a href="#">
+                                                            <span className="fa fa-comment" /> 19
+                                                        </a> */}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="block-21 mb-4 d-flex">
-                                    <a
-                                        className="blog-img mr-4"
-                                        style={{ backgroundImage: "url(images/image_3.jpg)" }}
-                                    />
-                                    <div className="text">
-                                        <h3 className="heading">
-                                            <a href="#">
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts
-                                            </a>
-                                        </h3>
-                                        <div className="meta">
-                                            <div>
-                                                <a href="#">
-                                                    <span className="fa fa-calendar" /> Apr. 18, 2020
-                                                </a>
-                                            </div>
-                                            <div>
-                                                <a href="#">
-                                                    <span className="fa fa-comment" /> 19
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                    </>);
+                                })}
+
                             </div>
                         </div>
                     </div>

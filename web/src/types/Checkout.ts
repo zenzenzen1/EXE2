@@ -20,8 +20,8 @@ export type CheckoutType = {
     email: string
     address: string
     additionalAddress: string
-    phoneNumber: string
     priceInformation: CartType
+    paymentMethod: string
 }
 
 export type PaymentInformationType = {
@@ -41,5 +41,11 @@ export const PaymentStatus = {
     SUCCESS: "PAID",
     CANCEL: "CANCELLED",
     PENDING: "pending",
-    PROCESSING: "processing"
+    PROCESSING: "processing",
+    ORDER: "order"
+}
+
+export const PaymentMethod = {
+    COD: "COD",
+    ONLINE: "ONLINE"
 }

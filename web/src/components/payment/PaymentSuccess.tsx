@@ -14,9 +14,9 @@ function PaymentSuccess() {
                 const payment = res.data as PaymentInformationType;
                 console.log(payment);
                 if (payment.status === PaymentStatus.SUCCESS) {
-                    // navigate("/", { state: { paymentStatus: PaymentStatus.SUCCESS } });
+                    navigate("/", { state: { paymentStatus: PaymentStatus.SUCCESS } });
                     httpClient.post("/order/success", {payment})
-                        .then(res => {
+                        .then(_res => {
                             
                         })
                         .catch(_err => {
@@ -28,6 +28,7 @@ function PaymentSuccess() {
             })
             .catch((_err) => {
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

@@ -23,10 +23,14 @@ function PaymentCancel() {
             .then((res) => {
                 const payment = res.data as PaymentInformationType;
                 console.log(payment);
-                payment.status === PaymentStatus.CANCEL && navigate("/cart", {state : {paymentStatus: PaymentStatus.CANCEL}});
+                if(payment.status === PaymentStatus.CANCEL)
+                {
+                    navigate("/cart", {state : {paymentStatus: PaymentStatus.CANCEL}});
+                }
             })
             .catch((_err) => {
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <>

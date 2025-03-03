@@ -9,6 +9,7 @@ import { CartType } from "../../types/cart";
 import { toast, ToastContainer } from "react-toastify";
 import { PaymentStatus } from "../../types/Checkout";
 import { images } from "../../include/images";
+import { toNumberWithDecimals, toVndCurrency } from "../../utils/Utils";
 
 function Cart() {
     const location = useLocation();
@@ -16,7 +17,7 @@ function Cart() {
         toast.warn("Bạn đã hủy thanh toán");
         location.state.paymentStatus = undefined;
     }
-    
+
     useEffect(() => {
         return () => {
         }
@@ -25,22 +26,26 @@ function Cart() {
     const discount = productInformation.discount;
     const [quantity, setQuantity] = useState<number | undefined>();
     const [cart, setCart] = useState<CartType>({
-        productName: "Nem Nắm Truyền Thống Nam Định",
+        productName: productInformation.name,
         productQuantity: quantity || 1,
         subTotal: productInformation.price * (quantity || 1),
         delivery: delivery,
         discount: discount,
         total: productInformation.price * (quantity || 1) + delivery - discount
     });
-    
+
     const totalPrice = useMemo(() => {
-        quantity && setCart({
-            ...cart,
-            productQuantity: quantity || 1,
-            subTotal: productInformation.price * (quantity || 1),
-            total: productInformation.price * (quantity || 1) + delivery - discount
-        });
+        if (quantity) {
+
+            setCart({
+                ...cart,
+                productQuantity: quantity || 1,
+                subTotal: productInformation.price * (quantity || 1),
+                total: productInformation.price * (quantity || 1) + delivery - discount
+            });
+        }
         return productInformation.price * (quantity || 1);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [quantity]);
 
     const handleChangeQuantity = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,12 +71,12 @@ function Cart() {
             setQuantity(productInformation.minQuantity);
         }
     }
-    
-    
+
+
     return (
         <>
             <IncludeStyleScript />
-            <ToastContainer draggable/>
+            <ToastContainer draggable />
             <Header navChossen="" />
             <section
                 className="hero-wrap hero-wrap-2"
@@ -82,7 +87,7 @@ function Cart() {
                 <div className="container">
                     <div className="row no-gutters slider-text align-items-end justify-content-center">
                         <div className="col-md-9 ftco-animate mb-5 text-center">
-                            <p className="breadcrumbs mb-0">
+                            {/* <p className="breadcrumbs mb-0">
                                 <span className="mr-2">
                                     <a href="index.html">
                                         Home <i className="fa fa-chevron-right" />
@@ -91,14 +96,14 @@ function Cart() {
                                 <span>
                                     Cart <i className="fa fa-chevron-right" />
                                 </span>
-                            </p>
-                            <h2 className="mb-0 bread">My Cart</h2>
+                            </p> */}
+                            <h2 className="mb-0 bread">Giỏ Hàng</h2>
                         </div>
                     </div>
                 </div>
             </section>
             <section className="ftco-section" style={{ color: 'black', paddingTop: '0px', paddingBottom: '0px' }}>
-                <div className="container">
+                <div className="container-fluid" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
                     <div className="row">
                         <div
                             className="col-md-8 wrap-about pl-md-5 ftco-animate py-5"
@@ -125,10 +130,10 @@ function Cart() {
                                         <tr>
                                             {/* <th>&nbsp;</th> */}
                                             <th>&nbsp;</th>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>total</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Tổng</th>
                                             {/* <th>&nbsp;</th> */}
                                         </tr>
                                     </thead>
@@ -149,16 +154,25 @@ function Cart() {
                                             <td>
                                                 <div className="email" >
                                                     <span style={{ color: "black" }}>Nem Nắm Truyền Thống Nam Định</span>
+                                                    <span style={{ color: "black", fontSize: "15px" }}>
+                                                        Trọng lượng: {productInformation.weight}
+                                                    </span>
+                                                    <span style={{ color: "black", fontSize: "15px" }}>
+                                                        Thành phần: {productInformation.ingredient}
+                                                    </span>
+                                                    <span style={{ color: "black", fontSize: "15px" }}>
+                                                        Hạn sử dụng: {productInformation.expiryDate}
+                                                    </span>
                                                 </div>
                                             </td>
-                                            <td>{productInformation.price}</td>
+                                            <td>{toVndCurrency(productInformation.price)}</td>
                                             <td className="quantity">
                                                 <div className="input-group">
                                                     <input
                                                         type="number"
                                                         name="quantity"
                                                         className="quantity form-control input-number"
-                                                        defaultValue={quantity || productInformation.minQuantity}
+                                                        defaultValue={toNumberWithDecimals(quantity || productInformation.minQuantity)}
                                                         min={1}
                                                         max={100}
                                                         onChange={(e) => handleChangeQuantity(e)}
@@ -167,7 +181,7 @@ function Cart() {
                                                     />
                                                 </div>
                                             </td>
-                                            <td>{totalPrice}</td>
+                                            <td>{toVndCurrency(totalPrice)}</td>
                                             {/* <td>
                                                 <button
                                                     type="button"
@@ -190,26 +204,27 @@ function Cart() {
                                 <div className="cart-total mb-3">
                                     <h3>Cart Totals</h3>
                                     <p className="d-flex">
-                                        <span>Subtotal</span>
-                                        <span>{cart.subTotal}</span>
+                                        <span>Tổng sản phẩm</span>
+                                        <span>{toVndCurrency(cart.subTotal)}</span>
                                     </p>
                                     <p className="d-flex">
-                                        <span>Delivery</span>
-                                        <span>{cart.delivery}</span>
+                                        <span>Vận chuyển</span>
+                                        <span>{toVndCurrency(cart.delivery)}</span>
                                     </p>
                                     <p className="d-flex">
-                                        <span>Discount</span>
-                                        <span>{cart.discount}</span>
+                                        <span>Giảm giá</span>
+                                        <span>{toVndCurrency(cart.discount)}</span>
                                     </p>
                                     <hr />
                                     <p className="d-flex total-price">
-                                        <span>Total</span>
-                                        <span>{cart.total}</span>
+                                        <span>Tổng</span>
+                                        <span>{toVndCurrency(cart.total)}</span>
                                     </p>
                                 </div>
                                 <p className="text-center">
                                     <Link to="/checkout" state={cart} className="btn btn-primary py-3 px-4">
-                                        Proceed to Checkout
+                                        {/* Proceed to Checkout */}
+                                        Tiến hành thanh toán
                                     </Link>
 
                                 </p>
