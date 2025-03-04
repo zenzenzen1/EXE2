@@ -3,6 +3,15 @@ export const blogs = [
         image:
             "/images/blog/481226580_122114003480743870_4542905742255421473_n.jpg"
         ,
+        date: "4/3/2025",
+        title: "📢 GÓC LẮNG NGHE KHÁCH HÀNG – CHIA SẺ CẢM NHẬN CÙNG NEM NẮM THÀNH NAM! 💬",
+        smallDescription: "🥰 Bạn đã thưởng thức Nem nắm Thành Nam chưa? Hương vị có làm bạn nhớ mãi không? Hãy chia sẻ ngay cảm nhận của bạn để chúng tôi ngày càng hoàn thiện hơn nhé!",
+        link: "https://www.facebook.com/share/p/18mQiuPbEv/"
+    },
+    {
+        image:
+            "/images/blog/481226580_122114003480743870_4542905742255421473_n.jpg"
+        ,
         date: "25/02/2025",
         title: "🌿 NEM NẮM GÌ CHƯA NGƯỜI ĐẸP? 🌿",
         smallDescription: "🎶 Đời có bao nhiêu cái đẹp, mà người đẹp đã nếm thử Nem nắm Thành Nam chưa nè? 🥰",

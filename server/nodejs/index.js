@@ -29,11 +29,11 @@ const port = 3001;
 const RETURN_URL = WEB_DOMAIN + "/order/success";
 const CANCEL_URL = WEB_DOMAIN + "/order/cancel";
 
-connectDb();
+// connectDb();
 
 app.get('/products', async (req, res) => {
-    var ObjectId = mongoose.Types.ObjectId;
-    const products = await product.findById(new ObjectId("67b1af2a75b4d259a840c148"));
+    // var ObjectId = mongoose.Types.ObjectId;
+    // const products = await product.findById(new ObjectId("67b1af2a75b4d259a840c148"));
     // var query = { campaign_id: new ObjectId(campaign._id) };
     // product({ name: "Iphone 13", price: 10000000 }).save();
     // payment({ orderCode: "6176861681", amount: 5000, description: "CSM1W5K8S37 Thanh Toan", accountNumber: "V3CAS8854359196", currency: "VND", 
@@ -43,7 +43,7 @@ app.get('/products', async (req, res) => {
     //     quantity: 1
     // })
     //     .save();
-    res.status(200).json(products);
+    res.status(200).json({ name: "Nem Thành Nam", price: "60.000đ"});
 });
 
 app.post('/create-payment-link', async (req, res) => {
@@ -76,13 +76,13 @@ app.post('/create-payment-link', async (req, res) => {
     payos.createPaymentLink(order)
         .then((paymentLink) => {
             res.status(200).json(paymentLink);
-            payment({ orderCode: "6176861681", amount: 5000, description: "CSM1W5K8S37 Thanh Toan", accountNumber: "V3CAS8854359196", currency: "VND", 
-                paymentLinkId: "9bcd4389a2a14edda42c62ccc39a1900", status: "PENDING", 
-                transactionDateTime: Date.now().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
-                product: products,
-                quantity: 1
-            })
-                .save();
+            // payment({ orderCode: "6176861681", amount: 5000, description: "CSM1W5K8S37 Thanh Toan", accountNumber: "V3CAS8854359196", currency: "VND", 
+            //     paymentLinkId: "9bcd4389a2a14edda42c62ccc39a1900", status: "PENDING", 
+            //     transactionDateTime: Date.now().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+            //     product: products,
+            //     quantity: 1
+            // })
+            //     .save();
         })
         .catch((error) => {
             console.log(error);

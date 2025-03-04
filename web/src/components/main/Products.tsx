@@ -26,7 +26,7 @@ const Products = () => {
                 <div className="container">
                     <div className="row no-gutters slider-text align-items-end justify-content-center">
                         <div className="col-md-9 ftco-animate mb-5 text-center">
-                            <p className="breadcrumbs mb-0">
+                            {/* <p className="breadcrumbs mb-0">
                                 <span className="mr-2">
                                     <Link to={"/"}
                                     >
@@ -36,8 +36,8 @@ const Products = () => {
                                 <span>
                                     Products <i className="fa fa-chevron-right" />
                                 </span>
-                            </p>
-                            <h2 className="mb-0 bread">Products</h2>
+                            </p> */}
+                            <h2 className="mb-0 bread">Sản Phẩm</h2>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ const Products = () => {
                             <div className="row mb-4">
                                 <div className="col-md-12 d-flex justify-content-between align-items-center">
                                     {/* <h4 className="product-select">Select Types of Products</h4> */}
-                                    <h4 className="product-select">Products</h4>
+                                    <h4 className="product-select">Sản Phẩm</h4>
                                     {/* <select className="selectpicker" multiple>
                                         <option>Brandy</option>
                                         <option>Gin</option>
@@ -218,7 +218,8 @@ const Products = () => {
                                 </div>
                             </div> */}
                             <div className="sidebar-box ftco-animate">
-                                <h3>Recent Blog</h3>
+                                {/* <h3>Recent Blog</h3> */}
+                                <h3>Tin Tức Gần Đây</h3>
                                 {blogs.map((blog, i) => {
                                     if (i > 2) return null
                                     return (<>

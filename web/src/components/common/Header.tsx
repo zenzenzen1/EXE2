@@ -92,7 +92,7 @@ const Header = (props: Props) => {
                             </div>
                         </a> */}
                         <Link to={"/cart"} className='btn-cart dropdown-toggle dropdown-toggle-split' >
-                            <span className="flaticon-shopping-bag" />
+                            <span className="flaticon-shopping-bag" style={ props.navChossen === navElements.cart ? {} : {color: "black"}}/>
                             {/* <div className="d-flex justify-content-center align-items-center">
                                 <small>2</small>
                             </div> */}
@@ -165,9 +165,10 @@ const Header = (props: Props) => {
                     </button>
                     <div className="collapse navbar-collapse" id="ftco-nav">
                         <ul className="navbar-nav ml-auto">
-                            <li className={`nav-item ${props.navChossen === "home" ? "active" : ""}`}>
+                            <li className={`nav-item ${props.navChossen === navElements.home ? "active" : ""}`}>
                                 <Link to="/" className="nav-link" >
-                                    Home
+                                    {/* Home */}
+                                    Trang Chủ
                                 </Link>
                             </li>
                             {/* <li className={`nav-item ${props.navChossen === navElements.about ? "active" : ""}`} >
@@ -180,7 +181,7 @@ const Header = (props: Props) => {
                             // dropdown 
                             >
                                 <Link className="nav-link" to="/products">
-                                    Products
+                                    Sản Phảm
                                 </Link>
                                 {/* <a
                                     className="nav-link dropdown-toggle"
@@ -209,14 +210,15 @@ const Header = (props: Props) => {
                             </li>
                             <li className={`nav-item ${props.navChossen === navElements.blog ? "active" : ""}`}>
                                 <Link to="/blog" className="nav-link" >
-                                    Blog
+                                    {/* Blog */}
+                                    Tin Tức
                                 </Link>
                             </li>
-                            <li className={`nav-item ${props.navChossen === navElements.contact ? "active" : ""}`}>
+                            {/* <li className={`nav-item ${props.navChossen === navElements.contact ? "active" : ""}`}>
                                 <Link to="/contact" className="nav-link" >
-                                    Contact
+                                    Liên Hệ
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

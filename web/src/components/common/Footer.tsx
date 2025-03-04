@@ -17,23 +17,24 @@ const Footer = () => {
                                     </a>
                                 </h2>
                                 <p>
-                                    Far far away, behind the word mountains, far from the countries.
+                                    {/* Far far away, behind the word mountains, far from the countries. */}
+                                    Liên hệ với chúng tôi qua các kênh thông tin dưới đây.
                                 </p>
                                 <ul className="ftco-footer-social list-unstyled mt-2">
-                                    <li className="ftco-animate">
+                                    {/* <li className="ftco-animate">
                                         <a href="#">
                                             <span className="fa fa-twitter" />
                                         </a>
-                                    </li>
+                                    </li> */}
                                     <li className="ftco-animate">
                                         <Link to={links.facebook} target='_blank'>
                                             <span className="fa fa-facebook" />
                                         </Link>
                                     </li>
                                     <li className="ftco-animate">
-                                        <a href="#">
+                                        <Link to={links.instagram} target='_blank'>
                                             <span className="fa fa-instagram" />
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -69,7 +70,7 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </div> */}
-                        <div className="col-sm-12 col-md">
+                        {/* <div className="col-sm-12 col-md">
                             <div className="ftco-footer-widget mb-4 ml-md-4">
                                 <h2 className="ftco-heading-2">Information</h2>
                                 <ul className="list-unstyled">
@@ -99,8 +100,8 @@ const Footer = () => {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                        <div className="col-sm-12 col-md">
+                        </div> */}
+                        {/* <div className="col-sm-12 col-md">
                             <div className="ftco-footer-widget mb-4">
                                 <h2 className="ftco-heading-2">Quick Link</h2>
                                 <ul className="list-unstyled">
@@ -130,10 +131,11 @@ const Footer = () => {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="col-sm-12 col-md">
                             <div className="ftco-footer-widget mb-4">
-                                <h2 className="ftco-heading-2">Have a Questions?</h2>
+                                {/* <h2 className="ftco-heading-2">Have a Questions?</h2> */}
+                                <h2 className="ftco-heading-2">Địa chỉ của chúng tôi</h2>
                                 <div className="block-23 mb-3">
                                     <ul>
                                         <li>

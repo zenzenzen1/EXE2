@@ -10,6 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { PaymentStatus } from "../../types/Checkout";
 import { images } from "../../include/images";
 import { toNumberWithDecimals, toVndCurrency } from "../../utils/Utils";
+import { navElements } from "../../include/include";
 
 function Cart() {
     const location = useLocation();
@@ -77,7 +78,7 @@ function Cart() {
         <>
             <IncludeStyleScript />
             <ToastContainer draggable />
-            <Header navChossen="" />
+            <Header navChossen={navElements.cart} />
             <section
                 className="hero-wrap hero-wrap-2"
                 style={{ backgroundImage: `url(${images.mainImage})` }}
@@ -202,7 +203,7 @@ function Cart() {
                         <div className="col-md-4 wrap-about pl-md-5 ftco-animate py-5">
                             <div className="col  cart-wrap ftco-animate">
                                 <div className="cart-total mb-3">
-                                    <h3>Cart Totals</h3>
+                                    <h3>Thông Tin Đơn Hàng</h3>
                                     <p className="d-flex">
                                         <span>Tổng sản phẩm</span>
                                         <span>{toVndCurrency(cart.subTotal)}</span>

@@ -45,6 +45,7 @@ export const productsScript = [
 export const links = {
     "facebook": "https://www.facebook.com/share/14sfu6p7c9/?mibextid=wwXIfr",
     "home": "/",
+    "instagram": "https://www.instagram.com/nemthanhnam/",
 }
 
 export const socialMediaLinks = [
@@ -58,16 +59,16 @@ export const socialMediaLinks = [
         url: "https://www.instagram.com/nemthanhnam/",
         icon: "fa fa-instagram"
     },
-    {
-        name: "twitter",
-        url: "XXXXXXXXXXXXXXXXXXXX",
-        icon: "fa fa-twitter"
-    },
-    {
-        name: "dribbble",
-        url: "/",
-        icon: "fa fa-dribbble"
-    }
+    // {
+    //     name: "twitter",
+    //     url: "XXXXXXXXXXXXXXXXXXXX",
+    //     icon: "fa fa-twitter"
+    // },
+    // {
+    //     name: "dribbble",
+    //     url: "/",
+    //     icon: "fa fa-dribbble"
+    // }
 ]
 
 export const navElements = {
@@ -76,5 +77,6 @@ export const navElements = {
     products: "products",
     contact: "contact",
     blog: "blog",
+    cart: "cart",
     
 }

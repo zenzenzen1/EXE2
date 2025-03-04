@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom'
+import { blogs } from '../../datas/blogs'
 import { images } from '../../include/images'
 import { navElements } from '../../include/include'
 import Footer from '../common/Footer'
 import Header from '../common/Header'
 import IncludeStyleScript from '../common/IncludeStyleScript'
-import { blogs } from '../../datas/blogs'
 
 
 function Blog() {
@@ -21,7 +20,7 @@ function Blog() {
                 <div className="container">
                     <div className="row no-gutters slider-text align-items-end justify-content-center">
                         <div className="col-md-9 ftco-animate mb-5 text-center">
-                            <p className="breadcrumbs mb-0">
+                            {/* <p className="breadcrumbs mb-0">
                                 <span className="mr-2">
                                     <Link to={"/"}
                                     >
@@ -31,8 +30,8 @@ function Blog() {
                                 <span>
                                     Blog <i className="fa fa-chevron-right" />
                                 </span>
-                            </p>
-                            <h2 className="mb-0 bread">Blog</h2>
+                            </p> */}
+                            <h2 className="mb-0 bread">Tin Tức</h2>
                         </div>
                     </div>
                 </div>

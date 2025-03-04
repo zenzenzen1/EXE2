@@ -4,7 +4,7 @@ export const SERVER = {
 }
 
 export const emailjsConstant = {
-    serviceId: "service_5e6z7ye",
-    templateId: "template_80m0d2i",
-    publicKey: "qgD5tFyS9gL43wky-"
+    serviceId: "service_9axvsdp",
+    templateId: "template_gawyn6r",
+    publicKey: "LHyTq8YA89Zr5IyJy"
 }

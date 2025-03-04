@@ -75,7 +75,19 @@ function Checkout() {
     const handleCheckout = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setLoading(true);
-        
+
+        const emailjsTemplateParams = {
+            from_name: checkoutInformation.name,
+            from_email: checkoutInformation.email,
+            name: checkoutInformation.name,
+            phone: checkoutInformation.phone,
+            email: checkoutInformation.email,
+            address: checkoutInformation.address + ". " + checkoutInformation.additionalAddress,
+            productName: productInformation.name,
+            productQuantity: checkoutInformation.priceInformation.productQuantity,
+            total: toVndCurrency(checkoutInformation.priceInformation.total)
+        };
+
         switch (checkoutInformation.paymentMethod) {
             case PaymentMethod.ONLINE: {
                 httpClient.post("/create-payment-link", {
@@ -101,30 +113,29 @@ function Checkout() {
                     .then(res => {
                         console.log(res.data.checkoutUrl);
                         window.location.href = res.data.checkoutUrl;
+                        emailjs.send(emailjsConstant.serviceId, emailjsConstant.templateId, {...emailjsTemplateParams, paymentMethod: "Thanh toán online"}, emailjsConstant.publicKey)
+                            .then((_result) => {
+                                navigate("/", { state: { paymentStatus: PaymentStatus.ORDER } });
+                            })
+                            .catch((error) => {
+                                toast.error("Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại sau");
+                                console.log(error);
+                            });
                         setLoading(false);
 
                     })
                     .catch(err => {
                         console.log(err);
                         setLoading(false);
+                        toast.error("Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại sau");
                     })
                     ;
                 break;
             }
             case PaymentMethod.COD: {
-                emailjs.send(emailjsConstant.serviceId, emailjsConstant.templateId, {
-                    from_name: checkoutInformation.name,
-                    from_email: checkoutInformation.email,
-                    name: checkoutInformation.name,
-                    phone: checkoutInformation.phone,
-                    email: checkoutInformation.email,
-                    address: checkoutInformation.address + ". " + checkoutInformation.additionalAddress,
-                    productName: productInformation.name,
-                    productQuantity: checkoutInformation.priceInformation.productQuantity,
-                    total: toVndCurrency(checkoutInformation.priceInformation.total)
-                }, emailjsConstant.publicKey)
+                emailjs.send(emailjsConstant.serviceId, emailjsConstant.templateId, {...emailjsTemplateParams, paymentMethod: "Thanh toán khi nhận hàng"}, emailjsConstant.publicKey)
                     .then((_result) => {
-                        navigate("/", { state: { paymentStatus: PaymentStatus.ORDER} });
+                        navigate("/", { state: { paymentStatus: PaymentStatus.ORDER } });
                     })
                     .catch((error) => {
                         toast.error("Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại sau");
@@ -142,7 +153,7 @@ function Checkout() {
 
 
     }
-    
+
     const validateFields = () => {
         const invalidFields = {
             name: "",
@@ -270,7 +281,7 @@ function Checkout() {
                                     <div className="col-md-4">
                                         <div className="form-group mb-0">
                                             <label htmlFor="firstname">Tên <span className="text-danger">*</span></label>
-                                            
+
                                             {/* <input id="name" type="text" className="form-control" placeholder="" required
                                                 onChange={handleChangeCheckoutInformation}
                                             /> */}
@@ -371,7 +382,7 @@ function Checkout() {
                                         <div className="cart-detail cart-total p-3 p-md-4" style={{ color: "black", fontWeight: "bold" }}>
                                             <h3 className="billing-heading mb-4">Chi tiết đơn hàng</h3>
                                             <p style={{ color: "black" }} className="d-flex">
-                                                <span style={{ color: "black" }}>Sản Phẩm</span>
+                                                <span style={{ color: "black" }}>Tiền Sản Phẩm</span>
                                                 <span>{toVndCurrency(cart.subTotal)}</span>
                                             </p>
                                             <p style={{ color: "black" }} className="d-flex">
