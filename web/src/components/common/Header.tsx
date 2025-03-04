@@ -3,6 +3,7 @@ import { links, navElements, socialMediaLinks } from '../../include/include'
 import { information } from '../../include/information'
 import "./Header.css";
 import { images } from '../../include/images';
+import language, { getLanguage } from '../../configurations/language';
 
 type Props = {
     navChossen: string
@@ -32,7 +33,10 @@ const Header = (props: Props) => {
                                     <span >
                                         <span className="fa fa-paper-plane mr-3" />{information.email}
                                     </span>
+                                    <span>
+                                    </span>
                                 </p>
+
                             </div>
                             <div className="col-md-6 d-flex justify-content-md-end">
                                 <div className="social-media mr-4">
@@ -56,6 +60,14 @@ const Header = (props: Props) => {
                                                 <i className="sr-only">{socialMediaLink.name}</i>
                                             </span>
                                         </a>))}
+                                        <div className='d-flex align-items-center justify-content-center'
+                                            style={{ color: "white" }}
+                                        >
+                                            <span className="fa fa-globe">
+                                                <i className="sr-only">Language</i>
+                                                <span></span>
+                                            </span>
+                                        </div>
                                     </p>
                                 </div>
                                 {/* <div className="reg">
@@ -92,7 +104,7 @@ const Header = (props: Props) => {
                             </div>
                         </a> */}
                         <Link to={"/cart"} className='btn-cart dropdown-toggle dropdown-toggle-split' >
-                            <span className="flaticon-shopping-bag" style={ props.navChossen === navElements.cart ? {} : {color: "black"}}/>
+                            <span className="flaticon-shopping-bag" style={props.navChossen === navElements.cart ? {} : { color: "black" }} />
                             {/* <div className="d-flex justify-content-center align-items-center">
                                 <small>2</small>
                             </div> */}
@@ -168,7 +180,8 @@ const Header = (props: Props) => {
                             <li className={`nav-item ${props.navChossen === navElements.home ? "active" : ""}`}>
                                 <Link to="/" className="nav-link" >
                                     {/* Home */}
-                                    Trang Chủ
+                                    {/* Trang Chủ */}
+                                    {language[getLanguage()]["nav"]["home"]}
                                 </Link>
                             </li>
                             {/* <li className={`nav-item ${props.navChossen === navElements.about ? "active" : ""}`} >
@@ -181,7 +194,8 @@ const Header = (props: Props) => {
                             // dropdown 
                             >
                                 <Link className="nav-link" to="/products">
-                                    Sản Phảm
+                                    {/* Sản Phảm */}
+                                    {language[getLanguage()]["nav"]["product"]}
                                 </Link>
                                 {/* <a
                                     className="nav-link dropdown-toggle"

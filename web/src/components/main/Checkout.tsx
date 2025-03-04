@@ -1,24 +1,30 @@
+import emailjs from '@emailjs/browser';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 import { InputText } from "primereact/inputtext";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { emailjsConstant } from "../../configurations/configuration";
 import httpClient from "../../configurations/HttpClient";
 import { productInformation } from "../../datas/product";
+import { app } from '../../firebase';
 import { images } from "../../include/images";
 import { CartType } from "../../types/cart";
 import { CheckoutType, PaymentMethod, PaymentStatus } from "../../types/Checkout";
+import { toVndCurrency } from "../../utils/Utils";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import IncludeStyleScript from "../common/IncludeStyleScript";
-import { toast, ToastContainer } from "react-toastify";
-import { toVndCurrency } from "../../utils/Utils";
-import emailjs from '@emailjs/browser';
-import { emailjsConstant } from "../../configurations/configuration";
 
 function Checkout() {
     const location = useLocation();
     const navigate = useNavigate();
     const cart = location.state as CartType;
+    if (!cart) {
+        navigate("/");
+    }
+
     const [invalidFields, setInvalidFields] = useState({
         name: "",
         phone: "",
@@ -37,7 +43,31 @@ function Checkout() {
         paymentMethod: PaymentMethod.ONLINE
     });
 
+    const handleFindGoogle = async () => {
+        try {
+            const provider = new GoogleAuthProvider();
+            const auth = getAuth(app);
 
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            console.log(user);
+            setCheckoutInformation(state => {
+                return {
+                    ...state,
+                    name: user.displayName || "",
+                    email: user.email || "",
+                    phone: user.phoneNumber || ""
+                }
+            });
+
+
+            // const data = await res.json();
+            // console.log(data);
+            // navigate("/");
+        } catch (error) {
+            console.log("google auth error", error);
+        }
+    }
 
     const findLocation = () => {
         if (navigator.geolocation) {
@@ -113,7 +143,7 @@ function Checkout() {
                     .then(res => {
                         console.log(res.data.checkoutUrl);
                         window.location.href = res.data.checkoutUrl;
-                        emailjs.send(emailjsConstant.serviceId, emailjsConstant.templateId, {...emailjsTemplateParams, paymentMethod: "Thanh toán online"}, emailjsConstant.publicKey)
+                        emailjs.send(emailjsConstant.serviceId, emailjsConstant.templateId, { ...emailjsTemplateParams, paymentMethod: "Thanh toán online" }, emailjsConstant.publicKey)
                             .then((_result) => {
                                 navigate("/", { state: { paymentStatus: PaymentStatus.ORDER } });
                             })
@@ -133,7 +163,7 @@ function Checkout() {
                 break;
             }
             case PaymentMethod.COD: {
-                emailjs.send(emailjsConstant.serviceId, emailjsConstant.templateId, {...emailjsTemplateParams, paymentMethod: "Thanh toán khi nhận hàng"}, emailjsConstant.publicKey)
+                emailjs.send(emailjsConstant.serviceId, emailjsConstant.templateId, { ...emailjsTemplateParams, paymentMethod: "Thanh toán khi nhận hàng" }, emailjsConstant.publicKey)
                     .then((_result) => {
                         navigate("/", { state: { paymentStatus: PaymentStatus.ORDER } });
                     })
@@ -281,13 +311,14 @@ function Checkout() {
                                     <div className="col-md-4">
                                         <div className="form-group mb-0">
                                             <label htmlFor="firstname">Tên <span className="text-danger">*</span></label>
-
+                                            <span onClick={handleFindGoogle} className="btn btn-primary ml-4" title="Nhấn để lấy địa chỉ hiện tại" style={{ fontSize: "14px", cursor: "pointer" }}>Lấy thông tin từ google</span>
                                             {/* <input id="name" type="text" className="form-control" placeholder="" required
                                                 onChange={handleChangeCheckoutInformation}
                                             /> */}
                                             <InputText id="name" type="text" className="" placeholder="" required
                                                 style={{ width: "-webkit-fill-available" }}
                                                 onChange={handleChangeCheckoutInformation}
+                                                value={checkoutInformation.name}
                                             />
                                         </div>
                                     </div>
@@ -297,6 +328,7 @@ function Checkout() {
                                             <InputText type="text" className="" id="phone" placeholder="" pattern="[0-9]{10}" title="Phone number must be 10 digits" required
                                                 style={{ width: "-webkit-fill-available" }}
                                                 onChange={handleChangeCheckoutInformation}
+                                                value={checkoutInformation.phone}
                                             />
                                         </div>
                                     </div>
@@ -307,6 +339,7 @@ function Checkout() {
                                                 id="email"
                                                 style={{ width: "-webkit-fill-available" }}
                                                 onChange={handleChangeCheckoutInformation}
+                                                value={checkoutInformation.email}
                                             />
                                         </div>
                                     </div>
