@@ -1,3 +1,4 @@
+import language, { getLanguage } from "../../configurations/language";
 
 
 function FtcoIntro() {
@@ -17,9 +18,9 @@ function FtcoIntro() {
                                         A small river named Duden flows by their place and supplies it
                                         with the necessary regelialia.
                                     </p> */}
-                                    <h2>Hỗ trợ 24/7</h2>
+                                    <h2>{language[getLanguage()].smallDescription.support.title}</h2>
                                     <p>
-                                        Chúng tôi luôn sẵn lòng hỗ trợ bạn mọi lúc mọi nơi.
+                                        {language[getLanguage()].smallDescription.support.desctiption}
                                     </p>
                                 </div>
                             </div>

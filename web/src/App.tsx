@@ -11,7 +11,7 @@ import Home from "./components/main/Home";
 // import "../css/flaticon.css";
 // import "../css/style.css";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import OwlCarousel from "./components/common/OwlCarousel";
 import About from "./components/main/About";
 import Blog from "./components/main/Blog";
@@ -25,6 +25,12 @@ import PayOS from "./components/payment/PayOS";
 import PaymentSuccess from "./components/payment/PaymentSuccess";
 import PaymentCancel from "./components/payment/PaymentCancel";
 import Demo from "./components/demo/Demo";
+import { Provider } from "react-redux";
+import { persistor, store } from "./redux/store";
+import { PersistGate } from 'redux-persist/integration/react';
+import { LanguageProvider } from "./providers/LanguageProvider";
+import { getLanguage, LanguageTypes } from "./configurations/language";
+import LanguageHandler from "./providers/LanguageHandler";
 
 // import "./App.css";
 
@@ -48,31 +54,41 @@ function App() {
             // });
         };
     }, []);
-    
-    
+    const [language, setLanguage] = useState(getLanguage());
+
+    // Function to update the theme
+    const handleLanguageChange = (language: LanguageTypes) => {
+        setLanguage(language);
+    };
+
+
 
     return (
         <>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/owl" element={<OwlCarousel />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/zalopay" element={<Zalopay />} />
-                    <Route path="/vnpay" element={<Vnpay />} />
-                    <Route path="/cart" element={<Cart />} />
-                    <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/payos" element={<PayOS />} />
-                    <Route path="/order/success" element={<PaymentSuccess />} />
-                    <Route path="/order/cancel" element={<PaymentCancel />} />
-                    <Route path="/demo" element={<Demo />} />
-                    
-                    <Route path="*" element={<Navigate to="/" />} />
-                </Routes>
-            </BrowserRouter>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/products" element={<Products />} />
+                                <Route path="/contact" element={<Contact />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/owl" element={<OwlCarousel />} />
+                                <Route path="/blog" element={<Blog />} />
+                                <Route path="/zalopay" element={<Zalopay />} />
+                                <Route path="/vnpay" element={<Vnpay />} />
+                                <Route path="/cart" element={<Cart />} />
+                                <Route path="/checkout" element={<Checkout />} />
+                                <Route path="/payos" element={<PayOS />} />
+                                <Route path="/order/success" element={<PaymentSuccess />} />
+                                <Route path="/order/cancel" element={<PaymentCancel />} />
+                                <Route path="/demo" element={<Demo />} />
+
+                                <Route path="*" element={<Navigate to="/" />} />
+                            </Routes>
+                        </BrowserRouter>
+                    </PersistGate>
+                </Provider>
         </>
     )
 }

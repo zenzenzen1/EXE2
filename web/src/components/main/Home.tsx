@@ -1,17 +1,17 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { blogs } from '../../datas/blogs';
 import { images } from '../../include/images';
-import { links, navElements } from '../../include/include';
+import { navElements } from '../../include/include';
 import { information } from '../../include/information';
+import { PaymentStatus } from '../../types/Checkout';
 import Footer from '../common/Footer';
 import FtcoIntro from '../common/FtcoIntro';
 import FtcoKind from '../common/FtcoKind';
 import Header from '../common/Header';
 import IncludeStyleScript from '../common/IncludeStyleScript';
 import SmallAbout from '../common/SmallAbout';
-import { PaymentStatus } from '../../types/Checkout';
-import { toast, ToastContainer } from 'react-toastify';
-import { blogs } from '../../datas/blogs';
-import { useEffect } from 'react';
 
 const Home = () => {
     const location = useLocation();
