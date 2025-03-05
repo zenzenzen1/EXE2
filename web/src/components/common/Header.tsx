@@ -1,16 +1,23 @@
-import { Link } from 'react-router-dom'
-import { links, navElements, socialMediaLinks } from '../../include/include'
-import { information } from '../../include/information'
-import "./Header.css";
-import { images } from '../../include/images';
+import { MouseEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import language, { getLanguage } from '../../configurations/language';
+import { images } from '../../include/images';
+import { links, navElements, socialMediaLinks } from '../../include/include';
+import { information } from '../../include/information';
+import "./Header.css";
 
 type Props = {
     navChossen: string
 }
 
 const Header = (props: Props) => {
-
+    const [_, setLanguage] = useState(getLanguage());
+    
+    const handleChangeLanguage = (e: MouseEvent<HTMLSpanElement>) => {
+        localStorage.setItem('language', e.currentTarget.id);
+        setLanguage(getLanguage());
+        // window.location.reload()
+    }
     return (
         <>
             <nav
@@ -39,8 +46,8 @@ const Header = (props: Props) => {
 
                             </div>
                             <div className="col-md-6 d-flex justify-content-md-end">
-                                <div className="social-media mr-4">
-                                    <p className="mb-0 d-flex" style={{ gap: "11%" }}>
+                                <div className="social-media mr-4" style={{width: "30%"}}>
+                                    <p className="mb-0 d-flex" style={{ gap: "10%" }}>
                                         {/* <a
                                             href={links.facebook}
                                             target='_blank'
@@ -63,9 +70,13 @@ const Header = (props: Props) => {
                                         <div className='d-flex align-items-center justify-content-center'
                                             style={{ color: "white" }}
                                         >
-                                            <span className="fa fa-globe">
-                                                <i className="sr-only">Language</i>
-                                                <span></span>
+                                            <span className="fa fa-globe d-flex">
+                                                <i className="sr-only"></i>
+                                                <div className='m-0 p-0 ml-1' style={{fontSize: "17px"}}>
+                                                    <span style={{cursor: "pointer"}} id='vi' onClick={handleChangeLanguage}>vi</span>
+                                                    <span>&nbsp;|&nbsp;</span>
+                                                    <span style={{cursor: "pointer"}} id='en' onClick={handleChangeLanguage}>en</span>
+                                                </div>
                                             </span>
                                         </div>
                                     </p>
@@ -225,7 +236,8 @@ const Header = (props: Props) => {
                             <li className={`nav-item ${props.navChossen === navElements.blog ? "active" : ""}`}>
                                 <Link to="/blog" className="nav-link" >
                                     {/* Blog */}
-                                    Tin Tức
+                                    {/* Tin Tức */}
+                                    {language[getLanguage()].nav.blog}
                                 </Link>
                             </li>
                             {/* <li className={`nav-item ${props.navChossen === navElements.contact ? "active" : ""}`}>

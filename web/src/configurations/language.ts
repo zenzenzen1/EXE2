@@ -17,10 +17,13 @@ export default {
     }
 }
 
-export const getLanguage = () : "vi" | "en" => {
+export type LanguageTypes = "vi" | "en";
+
+
+export const getLanguage = () : LanguageTypes => {
     const language = localStorage.getItem('language');
     if(!language)  return "vi";
-    if(language === 'vi') 
-        return 'vi';
-    return 'en';
+    if(language === 'en') 
+        return 'en';
+    return 'vi';
 }
