@@ -36,9 +36,10 @@ function FtcoIntro() {
                                         A small river named Duden flows by their place and supplies it
                                         with the necessary regelialia.
                                     </p> */}
-                                    <h2>Đảm bảo hoàn trả</h2>
+                                    {/* <h2>Đảm bảo hoàn trả</h2> */}
+                                    <h2>{language[getLanguage()].smallDescription.refund.title}</h2>
                                     <p>
-                                        Chúng tôi cam kết hoàn trả tiền nếu bạn không hài lòng.
+                                       {language[getLanguage()].smallDescription.refund.desctiption} 
                                     </p>
                                 </div>
                             </div>
@@ -54,9 +55,9 @@ function FtcoIntro() {
                                         A small river named Duden flows by their place and supplies it
                                         with the necessary regelialia.
                                     </p> */}
-                                    <h2>Miễn phí vận chuyển</h2>
+                                    <h2>{language[getLanguage()].smallDescription.shipping.title}</h2>
                                     <p>
-                                        Chúng tôi cam kết giao hàng miễn phí.
+                                        {language[getLanguage()].smallDescription.shipping.desctiption}
                                     </p>
                                 </div>
                             </div>

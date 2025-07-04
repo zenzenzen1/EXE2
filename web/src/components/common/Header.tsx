@@ -5,64 +5,59 @@ import language, { getLanguage } from '../../configurations/language';
 import { images } from '../../include/images';
 import { links, navElements, socialMediaLinks } from '../../include/include';
 import { information } from '../../include/information';
-import { useLanguage } from '../../providers/LanguageProvider';
 import "./Header.css";
 import LanguageHandler from '../../providers/LanguageHandler';
+import { useLanguage } from '../../providers/LanguageContext';
 
 type Props = {
     navChossen: string,
 }
 
 const Header = (props: Props) => {
-    const [_, setLanguage] = useState(getLanguage());
     // const { _language, switchLanguage } = useLanguage();
+    const handleLanguageChange = useLanguage();
     const dispatch = useDispatch();
     const handleChangeLanguage = (e: MouseEvent<HTMLSpanElement>) => {
         const language = e.currentTarget.id;
         dispatch({ type: "language/changeLanguage", payload: language });
         // switchLanguage(language as "vi" | "en");
-        
-        handleLanguageChange();
+        handleLanguageChange(language as "vi" | "en");
 
-    }
-    const handleLanguageChange = () => {
-        setLanguage(getLanguage());
     }
 
 
     return (
         <>
-            <LanguageHandler onLanuageChange={() => { handleLanguageChange }} children={(
 
-                <nav
-                    className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-                    id="ftco-navbar"
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        padding: "0",
-                    }}
-                >
-                    <div className="wrap ">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-6 d-flex align-items-center">
-                                    <p className="mb-0 phone pl-md-2">
-                                        <span className="mr-5">
-                                            <span className="fa fa-phone mr-3" />{information.phone}
-                                        </span>
-                                        <span >
-                                            <span className="fa fa-paper-plane mr-3" />{information.email}
-                                        </span>
-                                        <span>
-                                        </span>
-                                    </p>
+            <nav
+                className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+                id="ftco-navbar"
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "0",
+                }}
+            >
+                <div className="wrap ">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-6 d-flex align-items-center">
+                                <p className="mb-0 phone pl-md-2">
+                                    <span className="mr-5">
+                                        <span className="fa fa-phone mr-3" />{information.phone}
+                                    </span>
+                                    <span >
+                                        <span className="fa fa-paper-plane mr-3" />{information.email}
+                                    </span>
+                                    <span>
+                                    </span>
+                                </p>
 
-                                </div>
-                                <div className="col-md-6 d-flex justify-content-md-end">
-                                    <div className="social-media mr-4" style={{ width: "30%" }}>
-                                        <p className="mb-0 d-flex" style={{ gap: "10%" }}>
-                                            {/* <a
+                            </div>
+                            <div className="col-md-6 d-flex justify-content-md-end">
+                                <div className="social-media mr-4" style={{ width: "30%" }}>
+                                    <p className="mb-0 d-flex" style={{ gap: "5%" }}>
+                                        {/* <a
                                             href={links.facebook}
                                             target='_blank'
                                             className="d-flex align-items-center justify-content-center"
@@ -71,31 +66,31 @@ const Header = (props: Props) => {
                                                 <i className="sr-only">Facebook</i>
                                             </span>
                                         </a> */}
-                                            {socialMediaLinks.map((socialMediaLink, i) => (<a
-                                                key={i}
-                                                href={socialMediaLink.url}
-                                                target='_blank'
-                                                className="d-flex align-items-center justify-content-center"
-                                            >
-                                                <span className={socialMediaLink.icon}>
-                                                    <i className="sr-only">{socialMediaLink.name}</i>
-                                                </span>
-                                            </a>))}
-                                            <div className='d-flex align-items-center justify-content-center'
-                                                style={{ color: "white" }}
-                                            >
-                                                <span className="fa fa-globe d-flex">
-                                                    <i className="sr-only"></i>
-                                                    <div className='m-0 p-0 ml-1' style={{ fontSize: "17px" }}>
-                                                        <span style={{ cursor: "pointer" }} id='vi' onClick={handleChangeLanguage}>vi</span>
-                                                        <span>&nbsp;|&nbsp;</span>
-                                                        <span style={{ cursor: "pointer" }} id='en' onClick={handleChangeLanguage}>en</span>
-                                                    </div>
-                                                </span>
-                                            </div>
-                                        </p>
-                                    </div>
-                                    {/* <div className="reg">
+                                        {socialMediaLinks.map((socialMediaLink, i) => (<a
+                                            key={i}
+                                            href={socialMediaLink.url}
+                                            target='_blank'
+                                            className="d-flex align-items-center justify-content-center"
+                                        >
+                                            <span className={socialMediaLink.icon}>
+                                                <i className="sr-only">{socialMediaLink.name}</i>
+                                            </span>
+                                        </a>))}
+                                        <div className='d-flex align-items-center justify-content-center'
+                                            style={{ color: "white" }}
+                                        >
+                                            <span className="fa fa-globe d-flex">
+                                                <i className="sr-only"></i>
+                                                <div className='m-0 p-0 ml-1' style={{ fontSize: "17px" }}>
+                                                    <span style={{ cursor: "pointer", textDecoration: getLanguage() === 'vi' ? "underline" : "none" }} id='vi' onClick={handleChangeLanguage}>vi</span>
+                                                    <span>&nbsp;|&nbsp;</span>
+                                                    <span style={{ cursor: "pointer", textDecoration: getLanguage() === 'en' ? "underline" : "none" }} id='en' onClick={handleChangeLanguage}>en</span>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </p>
+                                </div>
+                                {/* <div className="reg">
                                     <p className="mb-0">
                                         <a href="#" className="mr-2">
                                             Sign Up
@@ -103,20 +98,20 @@ const Header = (props: Props) => {
                                         <a href="#">Log In</a>
                                     </p>
                                 </div> */}
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="container">
-                        <Link to={links.home} >
-                            <img src={images.logo} alt="logo" width={"40px"} height={"40px"} style={{ borderRadius: "100%" }} />
-                        </Link>
-                        <Link to={links.home} className="navbar-brand" >
-                            Nem <span>Thành Nam</span>
-                        </Link>
-                        {/* Card Icon + function */}
-                        <div className="order-lg-last btn-group">
-                            {/* <a
+                </div>
+                <div className="container">
+                    <Link to={links.home} >
+                        <img src={images.logo} alt="logo" width={"40px"} height={"40px"} style={{ borderRadius: "100%" }} />
+                    </Link>
+                    <Link to={links.home} className="navbar-brand" >
+                        Nem <span>Thành Nam</span>
+                    </Link>
+                    {/* Card Icon + function */}
+                    <div className="order-lg-last btn-group">
+                        {/* <a
                             href="#"
                             className="btn-cart dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown"
@@ -128,13 +123,13 @@ const Header = (props: Props) => {
                                 <small>2</small>
                             </div>
                         </a> */}
-                            <Link to={"/cart"} className='btn-cart dropdown-toggle dropdown-toggle-split' >
-                                <span className="flaticon-shopping-bag" style={props.navChossen === navElements.cart ? {} : { color: "black" }} />
-                                {/* <div className="d-flex justify-content-center align-items-center">
+                        <Link to={"/cart"} className='btn-cart dropdown-toggle dropdown-toggle-split' >
+                            <span className="flaticon-shopping-bag" style={props.navChossen === navElements.cart ? {} : { color: "black" }} />
+                            {/* <div className="d-flex justify-content-center align-items-center">
                                 <small>2</small>
                             </div> */}
-                            </Link>
-                            {/* <div className="dropdown-menu dropdown-menu-right">
+                        </Link>
+                        {/* <div className="dropdown-menu dropdown-menu-right">
                             <div className="dropdown-item d-flex align-items-start" >
                                 <div
                                     className="img"
@@ -188,41 +183,41 @@ const Header = (props: Props) => {
                                 <span className="ion-ios-arrow-round-forward" />
                             </a>
                         </div> */}
-                        </div>
-                        <button
-                            className="navbar-toggler"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target="#ftco-nav"
-                            aria-controls="ftco-nav"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation"
-                        >
-                            <span className="oi oi-menu" /> Menu
-                        </button>
-                        <div className="collapse navbar-collapse" id="ftco-nav">
-                            <ul className="navbar-nav ml-auto">
-                                <li className={`nav-item ${props.navChossen === navElements.home ? "active" : ""}`}>
-                                    <Link to="/" className="nav-link" >
-                                        {/* Home */}
-                                        {/* Trang Chủ */}
-                                        {language[getLanguage()]["nav"]["home"]}
-                                    </Link>
-                                </li>
-                                {/* <li className={`nav-item ${props.navChossen === navElements.about ? "active" : ""}`} >
+                    </div>
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#ftco-nav"
+                        aria-controls="ftco-nav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span className="oi oi-menu" /> Menu
+                    </button>
+                    <div className="collapse navbar-collapse" id="ftco-nav">
+                        <ul className="navbar-nav ml-auto">
+                            <li className={`nav-item ${props.navChossen === navElements.home ? "active" : ""}`}>
+                                <Link to="/" className="nav-link" >
+                                    {/* Home */}
+                                    {/* Trang Chủ */}
+                                    {language[getLanguage()]["nav"]["home"]}
+                                </Link>
+                            </li>
+                            {/* <li className={`nav-item ${props.navChossen === navElements.about ? "active" : ""}`} >
                                 <Link to="/about" className="nav-link" >
                                     About
                                 </Link>
                             </li> */}
-                                <li className={`nav-item 
+                            <li className={`nav-item 
                                 ${props.navChossen === navElements.products ? "active" : ""}`}
-                                // dropdown 
-                                >
-                                    <Link className="nav-link" to="/products">
-                                        {/* Sản Phảm */}
-                                        {language[getLanguage()]["nav"]["product"]}
-                                    </Link>
-                                    {/* <a
+                            // dropdown 
+                            >
+                                <Link className="nav-link" to="/products">
+                                    {/* Sản Phảm */}
+                                    {language[getLanguage()]["nav"]["product"]}
+                                </Link>
+                                {/* <a
                                     className="nav-link dropdown-toggle"
                                     href="#"
                                     id="dropdown04"
@@ -246,24 +241,23 @@ const Header = (props: Props) => {
                                         Checkout
                                     </a>
                                 </div> */}
-                                </li>
-                                <li className={`nav-item ${props.navChossen === navElements.blog ? "active" : ""}`}>
-                                    <Link to="/blog" className="nav-link" >
-                                        {/* Blog */}
-                                        {/* Tin Tức */}
-                                        {language[getLanguage()].nav.blog}
-                                    </Link>
-                                </li>
-                                {/* <li className={`nav-item ${props.navChossen === navElements.contact ? "active" : ""}`}>
+                            </li>
+                            <li className={`nav-item ${props.navChossen === navElements.blog ? "active" : ""}`}>
+                                <Link to="/blog" className="nav-link" >
+                                    {/* Blog */}
+                                    {/* Tin Tức */}
+                                    {language[getLanguage()].nav.blog}
+                                </Link>
+                            </li>
+                            {/* <li className={`nav-item ${props.navChossen === navElements.contact ? "active" : ""}`}>
                                 <Link to="/contact" className="nav-link" >
                                     Liên Hệ
                                 </Link>
                             </li> */}
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
-                </nav>
-            )} />
+                </div>
+            </nav>
         </>
     )
 }

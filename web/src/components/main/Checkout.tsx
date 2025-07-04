@@ -2,7 +2,7 @@ import emailjs from '@emailjs/browser';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 import { InputText } from "primereact/inputtext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { emailjsConstant } from "../../configurations/configuration";
@@ -20,10 +20,12 @@ import IncludeStyleScript from "../common/IncludeStyleScript";
 function Checkout() {
     const location = useLocation();
     const navigate = useNavigate();
+    useEffect(() => {
+        if (!location.state) {
+            navigate("/cart");
+        }
+    }, [location, navigate]);
     const cart = location.state as CartType;
-    if (!cart) {
-        navigate("/");
-    }
 
     const [invalidFields, setInvalidFields] = useState({
         name: "",
@@ -122,7 +124,7 @@ function Checkout() {
             case PaymentMethod.ONLINE: {
                 httpClient.post("/create-payment-link", {
                     amount: checkoutInformation.priceInformation.total,
-                    description: `Thanh toán ${cart.productQuantity} Nem Nắm`,
+                    description: `Thanh toán ${cart?.productQuantity} Nem Nắm`,
                     buyerName: checkoutInformation.name,
                     buyerEmail: checkoutInformation.email,
                     buyerPhone: checkoutInformation.phone,
@@ -131,7 +133,7 @@ function Checkout() {
                         {
                             name: productInformation.name,
                             price: productInformation.price,
-                            quantity: cart.productQuantity
+                            quantity: cart?.productQuantity
                         }
                     ]
                 }, {
@@ -416,20 +418,20 @@ function Checkout() {
                                             <h3 className="billing-heading mb-4">Chi tiết đơn hàng</h3>
                                             <p style={{ color: "black" }} className="d-flex">
                                                 <span style={{ color: "black" }}>Tiền Sản Phẩm</span>
-                                                <span>{toVndCurrency(cart.subTotal)}</span>
+                                                <span>{toVndCurrency(cart?.subTotal)}</span>
                                             </p>
                                             <p style={{ color: "black" }} className="d-flex">
                                                 <span style={{ color: "black" }}>Vận Chuyển</span>
-                                                <span>{toVndCurrency(cart.delivery)}</span>
+                                                <span>{toVndCurrency(cart?.delivery)}</span>
                                             </p>
                                             <p style={{ color: "black" }} className="d-flex">
                                                 <span style={{ color: "black" }}>Giảm Giá</span>
-                                                <span>{toVndCurrency(cart.discount)}</span>
+                                                <span>{toVndCurrency(cart?.discount)}</span>
                                             </p>
                                             <hr />
                                             <p style={{ color: "black" }} className="d-flex total-price">
                                                 <span style={{ color: "black" }}>Tổng</span>
-                                                <span>{toVndCurrency(cart.total)}</span>
+                                                <span>{toVndCurrency(cart?.total)}</span>
                                             </p>
                                         </div>
                                     </div>

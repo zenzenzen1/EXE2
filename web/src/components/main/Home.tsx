@@ -12,6 +12,7 @@ import FtcoKind from '../common/FtcoKind';
 import Header from '../common/Header';
 import IncludeStyleScript from '../common/IncludeStyleScript';
 import SmallAbout from '../common/SmallAbout';
+import language, { getLanguage } from '../../configurations/language';
 
 const Home = () => {
     const location = useLocation();
@@ -65,7 +66,7 @@ const Home = () => {
                             <div className="text w-100 text-center">
                                 <h1 className="mb-4"
                                     dangerouslySetInnerHTML={{
-                                        __html: information.slogan
+                                        __html: language[getLanguage()].slogan
                                     }}
                                 >
                                 </h1>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { links } from '../../include/include'
 import { information } from '../../include/information'
+import language, { getLanguage } from '../../configurations/language'
 
 
 const Footer = () => {
@@ -17,8 +18,7 @@ const Footer = () => {
                                     </a>
                                 </h2>
                                 <p>
-                                    {/* Far far away, behind the word mountains, far from the countries. */}
-                                    Liên hệ với chúng tôi qua các kênh thông tin dưới đây.
+                                    {language[getLanguage()].footer.contact}
                                 </p>
                                 <ul className="ftco-footer-social list-unstyled mt-2">
                                     {/* <li className="ftco-animate">
@@ -135,7 +135,7 @@ const Footer = () => {
                         <div className="col-sm-12 col-md">
                             <div className="ftco-footer-widget mb-4">
                                 {/* <h2 className="ftco-heading-2">Have a Questions?</h2> */}
-                                <h2 className="ftco-heading-2">Địa chỉ của chúng tôi</h2>
+                                <h2 className="ftco-heading-2">{language[getLanguage()].footer.address}</h2>
                                 <div className="block-23 mb-3">
                                     <ul>
                                         <li>

@@ -12,25 +12,24 @@ import Home from "./components/main/Home";
 // import "../css/style.css";
 
 import { useMemo, useState } from "react";
+import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
 import OwlCarousel from "./components/common/OwlCarousel";
+import Demo from "./components/demo/Demo";
 import About from "./components/main/About";
 import Blog from "./components/main/Blog";
-import Contact from "./components/main/Contact";
-import Products from "./components/main/Products";
-import Zalopay from "./components/payment/Zalopay";
-import Vnpay from "./components/payment/Vnpay";
 import Cart from "./components/main/Cart";
 import Checkout from "./components/main/Checkout";
+import Contact from "./components/main/Contact";
+import Products from "./components/main/Products";
 import PayOS from "./components/payment/PayOS";
-import PaymentSuccess from "./components/payment/PaymentSuccess";
 import PaymentCancel from "./components/payment/PaymentCancel";
-import Demo from "./components/demo/Demo";
-import { Provider } from "react-redux";
-import { persistor, store } from "./redux/store";
-import { PersistGate } from 'redux-persist/integration/react';
-import { LanguageProvider } from "./providers/LanguageProvider";
+import PaymentSuccess from "./components/payment/PaymentSuccess";
+import Vnpay from "./components/payment/Vnpay";
+import Zalopay from "./components/payment/Zalopay";
 import { getLanguage, LanguageTypes } from "./configurations/language";
-import LanguageHandler from "./providers/LanguageHandler";
+import { LanguageContext } from "./providers/LanguageContext";
+import { persistor, store } from "./redux/store";
 
 // import "./App.css";
 
@@ -54,17 +53,16 @@ function App() {
             // });
         };
     }, []);
-    const [language, setLanguage] = useState(getLanguage());
+    const [_, setLanguage] = useState(getLanguage());
 
     // Function to update the theme
     const handleLanguageChange = (language: LanguageTypes) => {
         setLanguage(language);
     };
 
-
-
     return (
         <>
+            <LanguageContext.Provider value={handleLanguageChange}>
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
                         <BrowserRouter>
@@ -89,6 +87,7 @@ function App() {
                         </BrowserRouter>
                     </PersistGate>
                 </Provider>
+            </LanguageContext.Provider>
         </>
     )
 }

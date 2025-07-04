@@ -1,7 +1,16 @@
-export const blogs = [
+type BlogType = {
+    image: string;
+    title: string;
+    smallDescription: string;
+    date: string;
+    link: string;
+}
+
+
+export const blogs: BlogType[] = [
     {
         image:
-            "/images/blog/481226580_122114003480743870_4542905742255421473_n.jpg"
+            "/images/blog/481292641_122116070354743870_5739162465660735359_n.jpg"
         ,
         date: "4/3/2025",
         title: "📢 GÓC LẮNG NGHE KHÁCH HÀNG – CHIA SẺ CẢM NHẬN CÙNG NEM NẮM THÀNH NAM! 💬",
